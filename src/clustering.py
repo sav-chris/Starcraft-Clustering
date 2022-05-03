@@ -34,6 +34,8 @@ protoss_label_encoder = LabelEncoder()
 protoss_label_encoder.fit(array([]))
 
 BUILD_ORDER: Type[List[str]] = List[str] 
+#BUILD_ORDER: Type[np.chararray] = np.chararray
+#np.chararray(
 
 class Matchup(Enum):
     TvT = 1
@@ -46,12 +48,23 @@ class Matchup(Enum):
     PvP = 8
     PvZ = 9
 
+def levenshtein_distance_metric(left: BUILD_ORDER, right: BUILD_ORDER)->int:
+    return Levenshtein.distance(left, right)
+    #return Levenshtein.distance(left.tolist(), right.tolist())
 
 class BuildOrder():
-    VersusTerran  : List[BUILD_ORDER] = []
-    VersusZerg    : List[BUILD_ORDER] = []
-    VersusProtoss : List[BUILD_ORDER] = []
-    def add_build_order(bo : BUILD_ORDER, bos: List[BUILD_ORDER]):
+    #VersusTerran   = np.zeros(0) #Type[np.array[BUILD_ORDER]]
+    #VersusZerg     = np.zeros(0)
+    #VersusProtoss  = np.zeros(0)
+    VersusTerran  : Type[List[BUILD_ORDER]] = [] #Type[np.array[BUILD_ORDER]]
+    VersusZerg    : Type[List[BUILD_ORDER]] = []
+    VersusProtoss : Type[List[BUILD_ORDER]] = []
+
+    #TerranLevenshteinMatrix  : np.array = np.empty
+    #ZergLevenshteinMatrix    : np.array = np.empty
+    #ProtossLevenshteinMatrix : np.array = np.empty
+
+    def add_build_order(self, bo : BUILD_ORDER, bos: List[BUILD_ORDER]):
         bos.append(bo)
 
     def add_terran_build_order(self, bo : BUILD_ORDER):
@@ -63,60 +76,16 @@ class BuildOrder():
     def add_protoss_build_order(self, bo : BUILD_ORDER):
         self.add_build_order(bo, self.VersusProtoss)
 
+    #def allocate_levenshtein_matrices(self):
+    #    tLength = len(self.VersusTerran)
+    #    zLength = len(self.VersusZerg)
+    #    pLength = len(self.VersusTerran)
+    #    TerranLevenshteinMatrix = np.zeros((tLength, tLength)) 
+    #    ZergLevenshteinMatrix   = np.zeros((zLength, zLength)) 
+    #    ZergLevenshteinMatrix   = np.zeros((pLength, pLength)) 
 
-# Terran Matchups
-# TVT
-# TVP
-# TVZ
-class TerranBuildOrders(BuildOrder):
-    TVT : List[BUILD_ORDER] = []
-    TVP : List[BUILD_ORDER] = []
-    TVZ : List[BUILD_ORDER] = []
-
-    def add_tvt_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.TVT)
-
-    def add_tvp_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.TVP)
-
-    def add_tvz_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.TVZ)
-
-# Zerg Matchups
-# ZVT
-# ZVP
-# ZVZ
-class ZergBuildOrders(BuildOrder):
-    ZVT : List[BUILD_ORDER] = []
-    ZVP : List[BUILD_ORDER] = []
-    ZVZ : List[BUILD_ORDER] = []
-
-    def add_zvt_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.ZVT)
-
-    def add_zvp_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.ZVP)
-
-    def add_zvz_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.ZVZ)
-
-# Protoss Matchups
-# PVT
-# PVP
-# PVZ 
-class ProtossBuildOrders(BuildOrder):
-    PVT : List[BUILD_ORDER] = []
-    PVP : List[BUILD_ORDER] = []
-    PVZ : List[BUILD_ORDER] = []
-
-    def add_pvt_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.PVT)
-
-    def add_pvp_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.PVP)
-
-    def add_pvz_build_order(self, bo : BUILD_ORDER):
-        self.add_build_order(bo, self.PVZ)
+    #def compute_levenshtein(build_orders : List[BUILD_ORDER], levenshtein_matrix : np.array):
+    #    build_orders
 
 
 terran_build_orders  : BuildOrder = BuildOrder()
@@ -149,14 +118,13 @@ def extract_build_order(build_order):
         minutes = time.minute
         seconds = time.second
         name = build_event['name']
-        print(", ".join([build_event['time'], build_event['name']]))
+        #print(", ".join([build_event['time'], build_event['name']]))
         buildOrder.append(BuildEvent(minutes, seconds, name))
         i = i + 1
     return buildOrder
 
-
+# Load Data
 for data_file in data_files:
-
 
     result_replay = spawningtool.parser.parse_replay(data_file)
 
@@ -195,6 +163,9 @@ for data_file in data_files:
     p1_build_order_symbols : BUILD_ORDER = [chr(letter) for letter in p1_build_order_symbols]
     p2_build_order_symbols : BUILD_ORDER = [chr(letter) for letter in p2_build_order_symbols]
     
+    #p1_build_order_symbols : BUILD_ORDER = np.asarray( [chr(letter) for letter in p1_build_order_symbols])
+    #p2_build_order_symbols : BUILD_ORDER = np.asarray( [chr(letter) for letter in p2_build_order_symbols])
+    
 
     if p1_race == 'Terran' and p2_race == 'Terran':
         terran_build_orders.add_terran_build_order (p1_build_order_symbols)
@@ -232,18 +203,53 @@ for data_file in data_files:
         protoss_build_orders.add_protoss_build_order(p1_build_order_symbols)
         protoss_build_orders.add_protoss_build_order(p2_build_order_symbols)
     
+    # TO DO: Save build order data to file/db?
+
     #reduced_dataset = OPTICS(metric=similarity).fit(dataset)
     #clustering = dbscan(X, metric=lev_metric, eps=5, min_samples=2, algorithm='brute')
     
     #dist = ld(p1_build_order_numeric, p2_build_order_numeric)
     
-    reduced_dataset = OPTICS(metric=similarity).fit(dataset)
+    #reduced_dataset = OPTICS(metric=similarity).fit(dataset)
     
+    #dist = Levenshtein.distance(p1_build_order_symbols.tolist(), p2_build_order_symbols.tolist())
     dist = Levenshtein.distance(p1_build_order_symbols, p2_build_order_symbols)
 
     #dist = levenshtein(p1_build_order_symbols, p2_build_order_symbols)
-    print('')
-    
+    #print('')
+
+
+# TO DO: decide how to compute eps=???, min_samples=???
+
+#Compute Levenshtein Matricies 
+print('Computing TvT ...')
+clustering_TvT = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(terran_build_orders.VersusTerran)
+
+print('Computing TvZ ...')
+clustering_TvZ = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(terran_build_orders.VersusZerg)
+
+print('Computing TvP ...')
+clustering_TvP = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(terran_build_orders.VersusProtoss)
+
+print('Computing ZvT ...')
+clustering_ZvT = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(zerg_build_orders.VersusTerran)
+
+print('Computing ZvZ ...')
+clustering_ZvZ = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(zerg_build_orders.VersusZerg)
+
+print('Computing ZvP ...')
+clustering_ZvP = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(zerg_build_orders.VersusProtoss)
+
+print('Computing PvT ...')
+clustering_PvT = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(protoss_build_orders.VersusTerran)
+
+print('Computing PvZ ...')
+clustering_PvZ = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(protoss_build_orders.VersusZerg)
+
+print('Computing PvP ...')
+clustering_PvP = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(protoss_build_orders.VersusProtoss)
+
+
 
 
 
