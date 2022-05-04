@@ -10,6 +10,8 @@ pip install kmodes
 pip install matplotlib
 pip install leven
 pip install textdistance
+pip install levenshtein
+pip install rapidfuzz
 rem pip install strsimpy
 
 
