@@ -34,8 +34,6 @@ protoss_label_encoder = LabelEncoder()
 protoss_label_encoder.fit(array([]))
 
 BUILD_ORDER: Type[List[str]] = List[str] 
-#BUILD_ORDER: Type[np.chararray] = np.chararray
-#np.chararray(
 
 class Matchup(Enum):
     TvT = 1
@@ -110,14 +108,10 @@ protoss_build_orders : BuildOrder = BuildOrder()
 #result_replay['players'][1]['is_winner']
 
 class BuildEvent:
-    Minutes: int = 0
-    Seconds: int = 0
-    Name: str
-
     def __init__(self, minutes, seconds, name):
-        self.Minutes = minutes
-        self.Seconds = seconds
-        self.Name = name
+        self.Minutes: int = minutes
+        self.Seconds: int = seconds
+        self.Name: str = name
 
 
 def extract_build_order(build_order):

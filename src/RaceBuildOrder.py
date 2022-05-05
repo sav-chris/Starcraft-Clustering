@@ -2,22 +2,11 @@ from typing import List
 from typing import Type
 import numpy as np
 from numpy import array
-from enum import Enum
 from sklearn.preprocessing import LabelEncoder
-from rapidfuzz.distance import Levenshtein
-
-class Race(Enum):
-    Terran = 1
-    Zerg = 2
-    Protoss = 3
-
-BUILD_ORDER: Type[List[int]] = List[int] 
-BUILD_ORDER_STR: Type[List[str]] = List[str] 
-BUILD_ORDER_CHR: Type[List[str]] = List[str] 
-
-
-def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:
-    return Levenshtein.distance(left, right)
+from Constants import BUILD_ORDER
+from Constants import BUILD_ORDER_STR
+from Constants import Race
+from Constants import levenshtein_distance_metric
 
 
 class RaceBuildOrder:
