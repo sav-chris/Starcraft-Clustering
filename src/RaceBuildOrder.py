@@ -50,7 +50,7 @@ class RaceBuildOrder:
                 levenshtein_matrix[i,j] = levenshtein_distance_metric(left, right)
                 levenshtein_matrix[j,i] = levenshtein_matrix[i,j]
 
-    def compute_levenshtein_matrices(self):
+    def compute_levenshtein_matrices(self, verbose:bool = False):
 
         tLength = len(self.VersusTerran)
         zLength = len(self.VersusZerg)
@@ -62,6 +62,15 @@ class RaceBuildOrder:
         self.compute_levenshtein_matrix(self.TerranLevenshteinMatrix,  self.VersusTerran)
         self.compute_levenshtein_matrix(self.ZergLevenshteinMatrix,    self.VersusZerg)
         self.compute_levenshtein_matrix(self.ProtossLevenshteinMatrix, self.VersusProtoss)
+
+        if verbose:
+            print(self.Race)
+            print('Versus Terran: ')
+            print(self.TerranLevenshteinMatrix)
+            print('Versus Zerg: ')
+            print(self.ZergLevenshteinMatrix)
+            print('Versus Protoss: ')
+            print(self.ProtossLevenshteinMatrix)
 
 
     def build_labels(self, build_order: BUILD_ORDER_STR):

@@ -2,6 +2,7 @@ from enum import Enum
 from typing import List
 from typing import Type
 from rapidfuzz.distance import Levenshtein
+import os
 
 class Race(Enum):
     Terran = 1
@@ -32,7 +33,8 @@ BUILD_ORDER: Type[List[int]] = List[int]
 BUILD_ORDER_STR: Type[List[str]] = List[str] 
 BUILD_ORDER_CHR: Type[List[str]] = List[str] 
 
-DATA_DIR_FILTER: str = "../Data/**/*.SC2Replay"
+DATA_DIR_FILTER: str = "**\*.SC2Replay"
+DATA_DIR: str = os.path.join(os.path.dirname(__file__), '..', 'Data')
 
 
 def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:

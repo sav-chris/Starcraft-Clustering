@@ -2,16 +2,22 @@ import sys
 import os
 import unittest
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
-import ClusteringController
-
-TEST_DATA_DIR:str = os.path.join(os.path.dirname(__file__), '..', 'test.data')
+from ClusteringController import ClusteringController
+import spawningtool.parser
+import TestConstants
+from Constants import DATA_DIR_FILTER
 
 class TestClusteringController(unittest.TestCase):
-
-    def test_extract_build_order(self):
+    def test_load_directory(self):
         controller: ClusteringController = ClusteringController()
 
-        result_replay = spawningtool.parser.parse_replay(data_file)
+        controller.load_directory(TestConstants.TEST_DATA_DIR)
 
-        controller.extract_build_order()
+        self.assertGreater(len(controller.TerranBuildOrders.VersusProtoss), 0)
+        self.assertGreater(len(controller.ProtossBuildOrders.VersusTerran), 0)
+
+if __name__ == '__main__':
+    unittest.main()        
+
+
 
