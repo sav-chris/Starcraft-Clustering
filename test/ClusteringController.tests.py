@@ -12,7 +12,7 @@ class TestClusteringController(unittest.TestCase):
         controller: ClusteringController = ClusteringController()
 
         controller.load_directory(TestConstants.TEST_DATA_DIR)
-
+        
         self.assertGreater(len(controller.TerranBuildOrders.VersusProtoss), 0)
         self.assertGreater(len(controller.ProtossBuildOrders.VersusTerran), 0)
 

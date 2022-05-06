@@ -8,18 +8,27 @@ import Constants
 
 clustering_controller: ClusteringController = ClusteringController()
 
-clustering_controller.load_directory(Constants.DATA_DIR, True)
-clustering_controller.compute_levenshtein_matrices(True)
+if clustering_controller.count_levenshtein_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
+    print('Computing Levenshtein Matricies ... ')
+    clustering_controller.load_directory(Constants.DATA_DIR, True)
+    clustering_controller.compute_levenshtein_matrices(True)
+    clustering_controller.save_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
+else:
+    print('Precomputed Levenshtein Matricies Loading ...')
+    clustering_controller.load_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
+
+print('Clustering ...')
+clustering_TvP = OPTICS(eps=30, min_samples=5).fit(clustering_controller.TerranBuildOrders.ProtossLevenshteinMatrix)
 
 
-
+print(clustering_TvP)
 # TO DO: decide how to compute eps=???, min_samples=???
 
 #Compute Levenshtein Matricies 
-zerg_build_orders.compute_levenshtein_matrices()
+#zerg_build_orders.compute_levenshtein_matrices()
 
 
-clustering_ZvZ = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(np.array(zerg_build_orders.VersusZerg))
+#clustering_ZvZ = OPTICS(metric=levenshtein_distance_metric, eps=30, min_samples=5).fit(np.array(zerg_build_orders.VersusZerg))
 
 
 #print('Computing TvT ...')

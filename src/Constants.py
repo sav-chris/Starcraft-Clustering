@@ -34,8 +34,23 @@ BUILD_ORDER_STR: Type[List[str]] = List[str]
 BUILD_ORDER_CHR: Type[List[str]] = List[str] 
 
 DATA_DIR_FILTER: str = "**\*.SC2Replay"
-DATA_DIR: str = os.path.join(os.path.dirname(__file__), '..', 'Data')
+LEVENSHTEIN_DIR_FILTER: str = "**\*.npy"
+ROOT_DIR: str = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+DATA_DIR: str = os.path.join(ROOT_DIR, 'Data')
+LEVENSHTEIN_DIR: str = os.path.join(ROOT_DIR, 'levenshtein')
+
+TERRAN_VT: str = 'TERRAN_VT.npy'
+TERRAN_VZ: str = 'TERRAN_VZ.npy'
+TERRAN_VP: str = 'TERRAN_VP.npy'
+PROTOSS_VT: str = 'PROTOSS_VT.npy'
+PROTOSS_VZ: str = 'PROTOSS_VZ.npy'
+PROTOSS_VP: str = 'PROTOSS_VP.npy'
+ZERG_VT: str = 'ZERG_VT.npy'
+ZERG_VZ: str = 'ZERG_VZ.npy'
+ZERG_VP: str = 'ZERG_VP.npy'
 
 
 def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:
     return Levenshtein.distance(left, right)
+
+
