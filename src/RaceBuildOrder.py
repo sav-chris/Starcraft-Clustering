@@ -9,6 +9,7 @@ from Constants import Race
 from Constants import levenshtein_distance_metric
 import Constants
 import os
+from sklearn.cluster import OPTICS
 
 class RaceBuildOrder:
 
@@ -105,17 +106,23 @@ class RaceBuildOrder:
 
     def save_levenshtein_matricies(self, directory: str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.levenshtein_paths(directory)
-        self.TerranLevenshteinMatrix.save( VT_NPY)
-        self.ZergLevenshteinMatrix.save( VZ_NPY)
-        self.ProtossLevenshteinMatrix.save( VP_NPY)
+        np.save(VT_NPY, self.TerranLevenshteinMatrix)
+        np.save(VZ_NPY, self.ZergLevenshteinMatrix)
+        np.save(VP_NPY, self.ProtossLevenshteinMatrix)
 
     def load_levenshtein_matricies(self, directory:str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.levenshtein_paths(directory)
-        self.TerranLevenshteinMatrix.load( VT_NPY)
-        self.ZergLevenshteinMatrix.load( VZ_NPY)
-        self.ProtossLevenshteinMatrix.load( VP_NPY)
+        self.TerranLevenshteinMatrix  = np.load( VT_NPY)
+        self.ZergLevenshteinMatrix    = np.load( VZ_NPY)
+        self.ProtossLevenshteinMatrix = np.load( VP_NPY)
 
-    
+    def OPTICS_clustering(self):
+        clustering_vT = OPTICS(eps=30, min_samples=5).fit(self.TerranLevenshteinMatrix)
+        clustering_vZ = OPTICS(eps=30, min_samples=5).fit(self.ZergLevenshteinMatrix)
+        clustering_vP = OPTICS(eps=30, min_samples=5).fit(self.ProtossLevenshteinMatrix)
+
+        return clustering_vT, clustering_vZ, clustering_vP
+
 
         
 

@@ -74,3 +74,13 @@ class ClusteringController:
         data_files: List[str] = glob.glob(filepattern,  recursive=True)
         return len(data_files)
 
+
+    def optics_clustering(self):
+        Terran_vT, Terran_vZ, Terran_vP = self.TerranBuildOrders.OPTICS_clustering()
+        Zerg_vT, Zerg_vZ, Zerg_vP = self.ZergBuildOrders.OPTICS_clustering()
+        Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering()
+
+        
+        
+        
+        

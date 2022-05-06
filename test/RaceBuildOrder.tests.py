@@ -6,7 +6,7 @@ import RaceBuildOrder
 import numpy.testing
 import numpy as np
 import Constants
-
+import TestConstants
 
 class TestRaceBuildOrder(unittest.TestCase):
 
@@ -91,6 +91,22 @@ class TestRaceBuildOrder(unittest.TestCase):
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VT ), VT_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VZ ), VZ_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VP ), VP_NPY)
+
+    def test_OPTICS_clustering(self):
+        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
+        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
+        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+
+        race_build_order_t.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        race_build_order_z.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        race_build_order_p.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        
+        Terran_vt, Terran_vz, Terran_vp = race_build_order_t.OPTICS_clustering()
+        Zerg_vt, Zerg_vz, Zerg_vp = race_build_order_t.OPTICS_clustering()
+        Protoss_vt, Protoss_vz, Protoss_vp = race_build_order_t.OPTICS_clustering()
+
+        print('')
+
 
 if __name__ == '__main__':
     unittest.main()

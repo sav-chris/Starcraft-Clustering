@@ -21,6 +21,7 @@ print('Clustering ...')
 clustering_TvP = OPTICS(eps=30, min_samples=5).fit(clustering_controller.TerranBuildOrders.ProtossLevenshteinMatrix)
 
 
+
 print(clustering_TvP)
 # TO DO: decide how to compute eps=???, min_samples=???
 
