@@ -12,6 +12,7 @@ pip install leven
 pip install textdistance
 pip install levenshtein
 pip install rapidfuzz
+pip install pylint
 rem pip install strsimpy
 
 

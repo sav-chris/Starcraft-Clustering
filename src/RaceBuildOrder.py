@@ -1,6 +1,7 @@
 from typing import List
 from typing import Type
 import numpy as np
+import numpy.typing as npt
 from numpy import array
 from sklearn.preprocessing import LabelEncoder
 from Constants import BUILD_ORDER
@@ -26,6 +27,7 @@ class RaceBuildOrder:
 
         self.Race = Race
         self.Label_Encoder.fit([])
+
 
     def add_build_order(self, bo : BUILD_ORDER_STR, bos: List[BUILD_ORDER_STR]):
         self.build_labels(bo)
