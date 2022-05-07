@@ -12,6 +12,7 @@ import Constants
 import os
 from sklearn.cluster import OPTICS
 import json
+from dendrogram import Dendrogram
 
 class RaceBuildOrder:
 
@@ -162,12 +163,52 @@ class RaceBuildOrder:
         self.ProtossLevenshteinMatrix = np.load( VP_NPY)
 
     def OPTICS_clustering(self):
-        clustering_vT = OPTICS(eps=30, min_samples=5).fit(self.TerranLevenshteinMatrix)
-        clustering_vZ = OPTICS(eps=30, min_samples=5).fit(self.ZergLevenshteinMatrix)
-        clustering_vP = OPTICS(eps=30, min_samples=5).fit(self.ProtossLevenshteinMatrix)
+        self.clustering_vT = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.TerranLevenshteinMatrix)
+        self.clustering_vZ = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.ZergLevenshteinMatrix)
+        self.clustering_vP = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.ProtossLevenshteinMatrix)
 
-        return clustering_vT, clustering_vZ, clustering_vP
+        return self.clustering_vT, self.clustering_vZ, self.clustering_vP
 
 
+    def draw_dendrogram(self, dendrogram: Dendrogram, clustering: OPTICS, build_orders: List[BUILD_ORDER]):
+        labels = clustering.labels_
+        for i in range(0, len(labels)):
+            build_order = build_orders[i]
+            labeled_build_order = self.Label_Encoder.inverse_transform(build_order)
+            if labels[i] != -1:
+                build_order_string: str = np.array2string(labeled_build_order, separator=',')
+                dendrogram.add_node(labels[i], build_order_string)
+        dendrogram.draw_graph()
+    
+    def draw_clustering(self):
+
+        match self.Race:
+            case Race.Terran:
+                filename_vT = Constants.TERRAN_VT_GV
+                filename_vZ = Constants.TERRAN_VZ_GV
+                filename_vP = Constants.TERRAN_VP_GV
+            case Race.Zerg:
+                filename_vT = Constants.ZERG_VT_GV
+                filename_vZ = Constants.ZERG_VZ_GV
+                filename_vP = Constants.ZERG_VP_GV
+            case Race.Protoss:
+                filename_vT = Constants.PROTOSS_VT_GV
+                filename_vZ = Constants.PROTOSS_VZ_GV
+                filename_vP = Constants.PROTOSS_VP_GV
+ 
+        filename_vT = os.path.join(Constants.DENDROGRAMS_DIR, filename_vT)
+        filename_vZ = os.path.join(Constants.DENDROGRAMS_DIR, filename_vZ)
+        filename_vP = os.path.join(Constants.DENDROGRAMS_DIR, filename_vP)
+        
+        dendrogram_vT: Dendrogram = Dendrogram("Dendrogram", filename_vT)
+        dendrogram_vZ: Dendrogram = Dendrogram("Dendrogram", filename_vZ)
+        dendrogram_vP: Dendrogram = Dendrogram("Dendrogram", filename_vP)
+
+        self.draw_dendrogram(dendrogram_vT, self.clustering_vT, self.VersusTerran)
+        self.draw_dendrogram(dendrogram_vZ, self.clustering_vZ, self.VersusZerg)
+        self.draw_dendrogram(dendrogram_vP, self.clustering_vP, self.VersusProtoss)
+
+
+        
         
 

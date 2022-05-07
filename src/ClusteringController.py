@@ -9,6 +9,8 @@ from Player import Player
 from Replay import Replay
 import os
 import Constants
+from dendrogram import Dendrogram
+import numpy as np
 
 
 class ClusteringController:
@@ -88,6 +90,84 @@ class ClusteringController:
         Terran_vT, Terran_vZ, Terran_vP = self.TerranBuildOrders.OPTICS_clustering()
         Zerg_vT, Zerg_vZ, Zerg_vP = self.ZergBuildOrders.OPTICS_clustering()
         Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering()
+
+        return Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
+
+    def draw_dendrograms(self):
+        self.TerranBuildOrders.draw_clustering()
+        self.ZergBuildOrders.draw_clustering()
+        self.ProtossBuildOrders.draw_clustering()
+
+
+    # def draw_dendrogram(self, clustering, race1: Race, race2: Race):
+    #     filename: str = ''
+    #     race_build_order: RaceBuildOrder = None
+    #     build_order: List[Constants.BUILD_ORDER] = []
+    #     match race1:
+    #         case Race.Terran:
+    #             match race2:
+    #                 case Race.Terran:
+    #                     filename = Constants.TERRAN_VT_GV
+    #                     build_order = 
+    #                 case Race.Zerg:
+    #                     filename = Constants.TERRAN_VZ_GV
+    #                 case Race.Protoss:
+    #                     filename = Constants.TERRAN_VP_GV
+    #         case Race.Zerg:
+    #             match race2:
+    #                 case Race.Terran:
+    #                     filename = Constants.ZERG_VT_GV
+    #                 case Race.Zerg:
+    #                     filename = Constants.ZERG_VZ_GV
+    #                 case Race.Protoss:
+    #                     filename = Constants.ZERG_VP_GV
+    #         case Race.Protoss:
+    #             match race2:
+    #                 case Race.Terran:
+    #                     filename = Constants.PROTOSS_VT_GV
+    #                 case Race.Zerg:
+    #                     filename = Constants.PROTOSS_VZ_GV
+    #                 case Race.Protoss:
+    #                     filename = Constants.PROTOSS_VP_GV
+
+    #     filename = os.path.join(Constants.DENDROGRAMS_DIR, Constants.TERRAN_VT_GV)
+    #     dendrogram: Dendrogram = Dendrogram("Dendrogram", filename)
+        
+    #     labels = clustering.labels_
+
+    #     for i in range(0, len(labels)):
+    #         build_order = self.TerranBuildOrders.VersusTerran[i]
+    #         labeled_build_order = self.TerranBuildOrders.Label_Encoder.inverse_transform(build_order)
+    #         if labels[i] != -1: #check not labeled noise
+    #             build_order_string: str = np.array2string(labeled_build_order, separator=',')
+    #             dendrogram.add_node(labels[i], build_order_string)
+
+    #     dendrogram.draw_graph()
+
+    # def draw_clustering(self, Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP):
+
+    #     filename = os.path.join(Constants.DENDROGRAMS_DIR, Constants.TERRAN_VT_GV)
+    #     dend_Terran_vT: Dendrogram = Dendrogram("Terran (TvT)", filename)
+        
+    #     tvt = Terran_vT.labels_
+
+    #     for i in range(0, len(tvt)):
+    #         build_order = self.TerranBuildOrders.VersusTerran[i]
+    #         labeled_build_order = self.TerranBuildOrders.Label_Encoder.inverse_transform(build_order)
+    #         if tvt[i] != -1:
+    #             build_order_string: str = np.array2string(labeled_build_order, separator=',')
+    #             dend_Terran_vT.add_node(tvt[i], build_order_string)
+
+    #     dend_Terran_vT.draw_graph()
+
+            
+
+
+
+
+
+
+
 
         
         

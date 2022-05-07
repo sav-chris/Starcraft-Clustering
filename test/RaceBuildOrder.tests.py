@@ -2,9 +2,12 @@ import sys
 import os
 import unittest
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+#from ..src.RaceBuildOrder import RaceBuildOrder
+# https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
 import RaceBuildOrder
 import numpy.testing
 import numpy as np
+#from ..src.Constants import Constants
 import Constants
 import TestConstants
 import glob

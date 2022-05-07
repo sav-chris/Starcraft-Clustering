@@ -42,16 +42,29 @@ ROOT_DIR: str = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 DATA_DIR: str = os.path.join(ROOT_DIR, 'Data')
 BUILD_ORDER_DIR: str = os.path.join(ROOT_DIR, 'build.orders')
 LEVENSHTEIN_DIR: str = os.path.join(ROOT_DIR, 'levenshtein')
+DENDROGRAMS_DIR: str = os.path.join(ROOT_DIR, 'dendrograms')
 
 TERRAN_VT: str = 'TERRAN_VT.npy'
 TERRAN_VZ: str = 'TERRAN_VZ.npy'
 TERRAN_VP: str = 'TERRAN_VP.npy'
-PROTOSS_VT: str = 'PROTOSS_VT.npy'
-PROTOSS_VZ: str = 'PROTOSS_VZ.npy'
-PROTOSS_VP: str = 'PROTOSS_VP.npy'
 ZERG_VT: str = 'ZERG_VT.npy'
 ZERG_VZ: str = 'ZERG_VZ.npy'
 ZERG_VP: str = 'ZERG_VP.npy'
+PROTOSS_VT: str = 'PROTOSS_VT.npy'
+PROTOSS_VZ: str = 'PROTOSS_VZ.npy'
+PROTOSS_VP: str = 'PROTOSS_VP.npy'
+
+
+TERRAN_VT_GV: str = 'Terran (TvT).gv'
+TERRAN_VZ_GV: str = 'Terran (TvZ).gv'
+TERRAN_VP_GV: str = 'Terran (TvP).gv'
+ZERG_VT_GV: str = 'Zerg (ZvT).gv'
+ZERG_VZ_GV: str = 'Zerg (ZvZ).gv'
+ZERG_VP_GV: str = 'Zerg (ZvP).gv'
+PROTOSS_VT_GV: str = 'Protoss (PvT).gv'
+PROTOSS_VZ_GV: str = 'Protoss (PvZ).gv'
+PROTOSS_VP_GV: str = 'Protoss (PvP).gv'
+
 
 LabelEncoderTerran: str = 'LabelEncoderTerran.npy'
 LabelEncoderZerg: str = 'LabelEncoderZerg.npy'

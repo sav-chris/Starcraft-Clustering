@@ -13,6 +13,10 @@ pip install textdistance
 pip install levenshtein
 pip install rapidfuzz
 pip install pylint
-rem pip install strsimpy
+pip install plotly
+pip install ete3 
+pip install pyqt5
+pip install pydot
+pip install graphviz
 
 
