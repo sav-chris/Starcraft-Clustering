@@ -7,13 +7,13 @@ import TestConstants
 
 
 class TestClusteringController(unittest.TestCase):
-    #def test_load_directory(self):
-    #    controller: ClusteringController = ClusteringController()
+    def test_load_directory(self):
+        controller: ClusteringController = ClusteringController()
 
-    #    controller.load_directory(TestConstants.TEST_DATA_DIR)
+        controller.load_directory(TestConstants.TEST_DATA_DIR)
         
-    #    self.assertGreater(len(controller.TerranBuildOrders.VersusProtoss), 0)
-    #    self.assertGreater(len(controller.ProtossBuildOrders.VersusTerran), 0)
+        self.assertGreater(len(controller.TerranBuildOrders.VersusProtoss), 0)
+        self.assertGreater(len(controller.ProtossBuildOrders.VersusTerran), 0)
 
     def test_clustering(self):
         controller: ClusteringController = ClusteringController()
@@ -22,7 +22,7 @@ class TestClusteringController(unittest.TestCase):
 
         clustering_TvT, clustering_TvZ, clustering_TvP = controller.TerranBuildOrders.OPTICS_clustering()
         
-        
+
 
         print('')
 
