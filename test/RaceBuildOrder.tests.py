@@ -7,6 +7,9 @@ import numpy.testing
 import numpy as np
 import Constants
 import TestConstants
+import glob
+from typing import List
+from typing import Type
 
 class TestRaceBuildOrder(unittest.TestCase):
 
@@ -75,19 +78,19 @@ class TestRaceBuildOrder(unittest.TestCase):
 
     def test_levenshtein_paths(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.levenshtein_paths(Constants.LEVENSHTEIN_DIR)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VT ), VT_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VZ ), VZ_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VP ), VP_NPY)
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.levenshtein_paths(Constants.LEVENSHTEIN_DIR)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VT ), VT_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VZ ), VZ_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VP ), VP_NPY)
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.levenshtein_paths(Constants.LEVENSHTEIN_DIR)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VT ), VT_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VZ ), VZ_NPY)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VP ), VP_NPY)
@@ -106,6 +109,38 @@ class TestRaceBuildOrder(unittest.TestCase):
         Protoss_vt, Protoss_vz, Protoss_vp = race_build_order_t.OPTICS_clustering()
 
         print('')
+
+    def find_files(self, directory: str, pattern: str)->List[str]:
+        filepattern: str = os.path.join(directory, pattern)
+        matching_files: List[str] = glob.glob(filepattern,  recursive=True)
+        return matching_files
+
+    def test_save_build_orders(self):
+        build_order_files: List[str] = self.find_files(TestConstants.TEST_BUILD_ORDER_DIR, Constants.BUILD_ORDER_DIR_FILTER)
+        #clear the old build orders
+        for file in build_order_files:
+            os.remove(file)
+
+        race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+
+        test_lables1 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Nexus', 'Cybernetics Core', 'Assimilator']
+        test_lables2 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Gateway', 'Cybernetics Core', 'Assimilator', 'Pylon']
+        test_lables3 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Forge', 'Pylon', 'Probe', 'Photon Cannon', 'Pylon']
+
+        race_build_order.add_protoss_build_order(test_lables1)
+        race_build_order.add_protoss_build_order(test_lables2)
+        race_build_order.add_protoss_build_order(test_lables3)
+
+        race_build_order.save_build_orders(TestConstants.TEST_BUILD_ORDER_DIR)
+
+        build_order_files: List[str] = self.find_files(TestConstants.TEST_BUILD_ORDER_DIR, Constants.BUILD_ORDER_DIR_FILTER)
+        self.assertGreater(len(build_order_files), 0)
+
+        race_build_order_loaded : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+        race_build_order_loaded.load_build_orders(TestConstants.TEST_BUILD_ORDER_DIR)
+
+        self.assertEqual(len(race_build_order_loaded.VersusProtoss), 3)
+
 
 
 if __name__ == '__main__':

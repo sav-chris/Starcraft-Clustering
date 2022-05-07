@@ -53,6 +53,10 @@ class ClusteringController:
             if replay.Player1.Race == Constants.Race.Zerg:
                 race_build_order_p2.add_zerg_build_order(replay.Player1.BuildOrder)
     
+    def save_build_orders(self, directory: str)->None:
+        self.TerranBuildOrders.save_build_orders(directory)
+        self.ZergBuildOrders.save_build_orders(directory)
+        self.ProtossBuildOrders.save_build_orders(directory)
 
     def compute_levenshtein_matrices(self, verbose:bool = False)->None:
         self.TerranBuildOrders.compute_levenshtein_matrices(verbose)
@@ -69,7 +73,7 @@ class ClusteringController:
         self.ZergBuildOrders.load_levenshtein_matricies(directory)
         self.ProtossBuildOrders.load_levenshtein_matricies(directory)
 
-    def count_levenshtein_files_in_dir(self, directory: str)->int:
+    def count_npy_files_in_dir(self, directory: str)->int:
         filepattern: str = os.path.join(directory, Constants.LEVENSHTEIN_DIR_FILTER)
         data_files: List[str] = glob.glob(filepattern,  recursive=True)
         return len(data_files)

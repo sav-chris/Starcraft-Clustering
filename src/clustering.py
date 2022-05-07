@@ -8,9 +8,17 @@ import Constants
 
 clustering_controller: ClusteringController = ClusteringController()
 
-if clustering_controller.count_levenshtein_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
-    print('Computing Levenshtein Matricies ... ')
+if clustering_controller.count_npy_files_in_dir(Constants.BUILD_ORDER_DIR) == 0:
+    print('Loading Replay Files ... ')
     clustering_controller.load_directory(Constants.DATA_DIR, True)
+    clustering_controller.save_build_orders(Constants.BUILD_ORDER_DIR)
+else:
+    print('Loading Cached Build Orders ... ')
+    clustering_controller.load_levenshtein_matricies(Constants.BUILD_ORDER_DIR)
+
+if clustering_controller.count_npy_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
+    print('Computing Levenshtein Matricies ... ')
+    
     clustering_controller.compute_levenshtein_matrices(True)
     clustering_controller.save_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
 else:

@@ -11,6 +11,7 @@ from Constants import levenshtein_distance_metric
 import Constants
 import os
 from sklearn.cluster import OPTICS
+import json
 
 class RaceBuildOrder:
 
@@ -24,7 +25,7 @@ class RaceBuildOrder:
         self.TerranLevenshteinMatrix: np.array = np.zeros(0)
         self.ZergLevenshteinMatrix: np.array = np.zeros(0)
         self.ProtossLevenshteinMatrix: np.array = np.zeros(0)
-
+        
         self.Race = Race
         self.Label_Encoder.fit([])
 
@@ -83,7 +84,7 @@ class RaceBuildOrder:
     def decode_labels(self, build_order: BUILD_ORDER)->BUILD_ORDER_STR:
         return self.Label_Encoder.inverse_transform(build_order)
 
-    def levenshtein_paths(self, directory: str):
+    def construct_paths(self, directory: str):
         VT_NPY: str = ''
         VZ_NPY: str = ''
         VP_NPY: str = ''
@@ -106,14 +107,56 @@ class RaceBuildOrder:
         VP_NPY = os.path.join(directory, VP_NPY)
         return VT_NPY, VZ_NPY, VP_NPY
 
+    def load_build_order_file(self, filename: str, data: List[BUILD_ORDER])->None:
+        with open(filename, 'r') as the_file:
+            lines = the_file.readlines()
+            for line in lines:
+                build_line = [int(x) for x in line.split(',')]
+                data.append(np.array(build_line))
+
+    def save_build_order_file(self, filename: str, data: List[BUILD_ORDER])->None:
+        with open(filename, 'a') as the_file:
+            for build_event in data:
+                the_file.write(', '.join(str(x) for x in build_event.tolist()))
+                the_file.write('\n')
+
+    def save_build_orders(self, directory: str)->None:
+        VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
+        self.save_build_order_file(VT_NPY, self.VersusTerran)
+        self.save_build_order_file(VZ_NPY, self.VersusZerg)
+        self.save_build_order_file(VP_NPY, self.VersusProtoss)
+        # Save Labels
+        match self.Race:
+            case Race.Terran:
+                np.save('LabelEncoderTerran.npy', self.Label_Encoder.classes_)
+            case Race.Zerg:
+                np.save('LabelEncoderZerg.npy', self.Label_Encoder.classes_)
+            case Race.Protoss:
+                np.save('LabelEncoderProtoss.npy', self.Label_Encoder.classes_)
+
+    def load_build_orders(self, directory:str)->None:
+        VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
+        self.load_build_order_file(VT_NPY, self.VersusTerran)
+        self.load_build_order_file(VZ_NPY, self.VersusZerg)
+        self.load_build_order_file(VP_NPY, self.VersusProtoss)
+        # Save Labels
+        match self.Race:
+            case Race.Terran:
+                self.Label_Encoder.classes_ = np.load('LabelEncoderTerran.npy')
+            case Race.Zerg:
+                self.Label_Encoder.classes_ = np.load('LabelEncoderZerg.npy')
+            case Race.Protoss:
+                self.Label_Encoder.classes_ = np.load('LabelEncoderProtoss.npy')
+
+
     def save_levenshtein_matricies(self, directory: str)->None:
-        VT_NPY, VZ_NPY, VP_NPY = self.levenshtein_paths(directory)
+        VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
         np.save(VT_NPY, self.TerranLevenshteinMatrix)
         np.save(VZ_NPY, self.ZergLevenshteinMatrix)
         np.save(VP_NPY, self.ProtossLevenshteinMatrix)
 
     def load_levenshtein_matricies(self, directory:str)->None:
-        VT_NPY, VZ_NPY, VP_NPY = self.levenshtein_paths(directory)
+        VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
         self.TerranLevenshteinMatrix  = np.load( VT_NPY)
         self.ZergLevenshteinMatrix    = np.load( VZ_NPY)
         self.ProtossLevenshteinMatrix = np.load( VP_NPY)

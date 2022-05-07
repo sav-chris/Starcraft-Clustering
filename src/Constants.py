@@ -3,6 +3,7 @@ from typing import List
 from typing import Type
 from rapidfuzz.distance import Levenshtein
 import os
+import numpy.typing as npt
 
 class Race(Enum):
     Terran = 1
@@ -29,14 +30,17 @@ class BuildEvent:
         self.Seconds: int = seconds
         self.Name: str = name
 
-BUILD_ORDER: Type[List[int]] = List[int] 
+#BUILD_ORDER: Type[List[int]] = List[int] 
+BUILD_ORDER: Type[npt.NDArray] = List[npt.NDArray] 
 BUILD_ORDER_STR: Type[List[str]] = List[str] 
 BUILD_ORDER_CHR: Type[List[str]] = List[str] 
 
 DATA_DIR_FILTER: str = "**\*.SC2Replay"
 LEVENSHTEIN_DIR_FILTER: str = "**\*.npy"
+BUILD_ORDER_DIR_FILTER: str = "**\*.npy"
 ROOT_DIR: str = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 DATA_DIR: str = os.path.join(ROOT_DIR, 'Data')
+BUILD_ORDER_DIR: str = os.path.join(ROOT_DIR, 'build.orders')
 LEVENSHTEIN_DIR: str = os.path.join(ROOT_DIR, 'levenshtein')
 
 TERRAN_VT: str = 'TERRAN_VT.npy'
