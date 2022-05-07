@@ -14,7 +14,7 @@ if clustering_controller.count_npy_files_in_dir(Constants.BUILD_ORDER_DIR) == 0:
     clustering_controller.save_build_orders(Constants.BUILD_ORDER_DIR)
 else:
     print('Loading Cached Build Orders ... ')
-    clustering_controller.load_levenshtein_matricies(Constants.BUILD_ORDER_DIR)
+    clustering_controller.load_build_orders(Constants.BUILD_ORDER_DIR)
 
 if clustering_controller.count_npy_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
     print('Computing Levenshtein Matricies ... ')

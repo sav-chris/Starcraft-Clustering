@@ -8,7 +8,7 @@ from Constants import BUILD_ORDER
 from Constants import BUILD_ORDER_STR
 from Constants import Race
 from Constants import levenshtein_distance_metric
-import Constants
+import Constants 
 import os
 from sklearn.cluster import OPTICS
 import json
@@ -128,11 +128,11 @@ class RaceBuildOrder:
         # Save Labels
         match self.Race:
             case Race.Terran:
-                np.save('LabelEncoderTerran.npy', self.Label_Encoder.classes_)
+                np.save(os.path.join(directory, Constants.LabelEncoderTerran), self.Label_Encoder.classes_)
             case Race.Zerg:
-                np.save('LabelEncoderZerg.npy', self.Label_Encoder.classes_)
+                np.save(os.path.join(directory, Constants.LabelEncoderZerg), self.Label_Encoder.classes_)
             case Race.Protoss:
-                np.save('LabelEncoderProtoss.npy', self.Label_Encoder.classes_)
+                np.save(os.path.join(directory, Constants.LabelEncoderProtoss), self.Label_Encoder.classes_)
 
     def load_build_orders(self, directory:str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
@@ -142,11 +142,11 @@ class RaceBuildOrder:
         # Save Labels
         match self.Race:
             case Race.Terran:
-                self.Label_Encoder.classes_ = np.load('LabelEncoderTerran.npy')
+                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderTerran), allow_pickle=True)
             case Race.Zerg:
-                self.Label_Encoder.classes_ = np.load('LabelEncoderZerg.npy')
+                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderZerg), allow_pickle=True)
             case Race.Protoss:
-                self.Label_Encoder.classes_ = np.load('LabelEncoderProtoss.npy')
+                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderProtoss), allow_pickle=True)
 
 
     def save_levenshtein_matricies(self, directory: str)->None:

@@ -58,6 +58,11 @@ class ClusteringController:
         self.ZergBuildOrders.save_build_orders(directory)
         self.ProtossBuildOrders.save_build_orders(directory)
 
+    def load_build_orders(self, directory: str)->None:
+        self.TerranBuildOrders.load_build_orders(directory)
+        self.ZergBuildOrders.load_build_orders(directory)
+        self.ProtossBuildOrders.load_build_orders(directory)
+
     def compute_levenshtein_matrices(self, verbose:bool = False)->None:
         self.TerranBuildOrders.compute_levenshtein_matrices(verbose)
         self.ZergBuildOrders.compute_levenshtein_matrices(verbose)

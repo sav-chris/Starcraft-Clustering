@@ -53,6 +53,9 @@ ZERG_VT: str = 'ZERG_VT.npy'
 ZERG_VZ: str = 'ZERG_VZ.npy'
 ZERG_VP: str = 'ZERG_VP.npy'
 
+LabelEncoderTerran: str = 'LabelEncoderTerran.npy'
+LabelEncoderZerg: str = 'LabelEncoderZerg.npy'
+LabelEncoderProtoss: str = 'LabelEncoderProtoss.npy'
 
 def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:
     return Levenshtein.distance(left, right)
