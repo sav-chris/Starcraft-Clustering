@@ -144,7 +144,25 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order_loaded.VersusProtoss), 3)
 
+    def test_construct_paths(self):
+        directory:str = ''
+        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order_t.construct_paths(directory)
+        self.assertEqual( VT_NPY, 'TERRAN_VT.npy' )
+        self.assertEqual( VZ_NPY, 'TERRAN_VZ.npy' )
+        self.assertEqual( VP_NPY, 'TERRAN_VP.npy' )
 
+        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order_z.construct_paths(directory)
+        self.assertEqual( VT_NPY, 'ZERG_VT.npy' )
+        self.assertEqual( VZ_NPY, 'ZERG_VZ.npy' )
+        self.assertEqual( VP_NPY, 'ZERG_VP.npy' )
+
+        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+        VT_NPY, VZ_NPY, VP_NPY = race_build_order_p.construct_paths(directory)
+        self.assertEqual( VT_NPY, 'PROTOSS_VT.npy' )
+        self.assertEqual( VZ_NPY, 'PROTOSS_VZ.npy' )
+        self.assertEqual( VP_NPY, 'PROTOSS_VP.npy' )
 
 if __name__ == '__main__':
     unittest.main()

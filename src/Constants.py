@@ -38,6 +38,7 @@ BUILD_ORDER_CHR: Type[List[str]] = List[str]
 DATA_DIR_FILTER: str = "**\*.SC2Replay"
 LEVENSHTEIN_DIR_FILTER: str = "**\*.npy"
 BUILD_ORDER_DIR_FILTER: str = "**\*.npy"
+GRAPHVIZ_DIR_FILTER: str = "*.gv"
 ROOT_DIR: str = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 DATA_DIR: str = os.path.join(ROOT_DIR, 'Data')
 BUILD_ORDER_DIR: str = os.path.join(ROOT_DIR, 'build.orders')
@@ -55,15 +56,15 @@ PROTOSS_VZ: str = 'PROTOSS_VZ.npy'
 PROTOSS_VP: str = 'PROTOSS_VP.npy'
 
 
-TERRAN_VT_GV: str = 'Terran (TvT).gv'
-TERRAN_VZ_GV: str = 'Terran (TvZ).gv'
-TERRAN_VP_GV: str = 'Terran (TvP).gv'
-ZERG_VT_GV: str = 'Zerg (ZvT).gv'
-ZERG_VZ_GV: str = 'Zerg (ZvZ).gv'
-ZERG_VP_GV: str = 'Zerg (ZvP).gv'
-PROTOSS_VT_GV: str = 'Protoss (PvT).gv'
-PROTOSS_VZ_GV: str = 'Protoss (PvZ).gv'
-PROTOSS_VP_GV: str = 'Protoss (PvP).gv'
+TERRAN_VT_GV: str = 'Terran(TvT).gv'
+TERRAN_VZ_GV: str = 'Terran(TvZ).gv'
+TERRAN_VP_GV: str = 'Terran(TvP).gv'
+ZERG_VT_GV: str = 'Zerg(ZvT).gv'
+ZERG_VZ_GV: str = 'Zerg(ZvZ).gv'
+ZERG_VP_GV: str = 'Zerg(ZvP).gv'
+PROTOSS_VT_GV: str = 'Protoss(PvT).gv'
+PROTOSS_VZ_GV: str = 'Protoss(PvZ).gv'
+PROTOSS_VP_GV: str = 'Protoss(PvP).gv'
 
 
 LabelEncoderTerran: str = 'LabelEncoderTerran.npy'

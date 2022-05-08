@@ -20,6 +20,12 @@ class Player:
         self.IsWinner: bool = replay['players'][player_index]['is_winner']
         self.BuildOrder: Constants.BUILD_ORDER_STR = self.extract_build_order(replay['players'][player_index]['buildOrder'], cut_off_time)
         
+    def is_structure(self, name:str)->bool:
+        structures = []
+        if name in structures:
+            return True
+        return False
+
     def extract_build_order(self, build_order: TypedDict, cut_off_time: GameTime)->Constants.BUILD_ORDER_STR:
         minutes = 0
         seconds = 0

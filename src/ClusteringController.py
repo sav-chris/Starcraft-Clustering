@@ -11,6 +11,7 @@ import os
 import Constants
 from dendrogram import Dendrogram
 import numpy as np
+import subprocess
 
 
 class ClusteringController:
@@ -42,18 +43,18 @@ class ClusteringController:
             race_build_order_p2: RaceBuildOrder = self.select_race_build_order(replay.Player2)
 
             if replay.Player2.Race == Constants.Race.Protoss:
-                race_build_order_p1.add_protoss_build_order(replay.Player2.BuildOrder)
+                race_build_order_p1.add_protoss_build_order(replay.Player1.BuildOrder)
             if replay.Player2.Race == Constants.Race.Terran:
-                race_build_order_p1.add_terran_build_order(replay.Player2.BuildOrder)
+                race_build_order_p1.add_terran_build_order(replay.Player1.BuildOrder)
             if replay.Player2.Race == Constants.Race.Zerg:
-                race_build_order_p1.add_zerg_build_order(replay.Player2.BuildOrder)
+                race_build_order_p1.add_zerg_build_order(replay.Player1.BuildOrder)
 
             if replay.Player1.Race == Constants.Race.Protoss:
-                race_build_order_p2.add_protoss_build_order(replay.Player1.BuildOrder)
+                race_build_order_p2.add_protoss_build_order(replay.Player2.BuildOrder)
             if replay.Player1.Race == Constants.Race.Terran:
-                race_build_order_p2.add_terran_build_order(replay.Player1.BuildOrder)
+                race_build_order_p2.add_terran_build_order(replay.Player2.BuildOrder)
             if replay.Player1.Race == Constants.Race.Zerg:
-                race_build_order_p2.add_zerg_build_order(replay.Player1.BuildOrder)
+                race_build_order_p2.add_zerg_build_order(replay.Player2.BuildOrder)
     
     def save_build_orders(self, directory: str)->None:
         self.TerranBuildOrders.save_build_orders(directory)
@@ -92,10 +93,21 @@ class ClusteringController:
         Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering()
 
         return Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
+    
+    def generate_svg(self):
+        filepattern: str = os.path.join(Constants.DENDROGRAMS_DIR, Constants.GRAPHVIZ_DIR_FILTER)
+        data_files: List[str] = glob.glob(filepattern)
+        for file in data_files:
+            dot_command:str = 'dot -T svg "{}" -O'.format(file)
+            os.system(dot_command)
+            #subprocess.run([dot_command])
 
     def draw_dendrograms(self):
         self.TerranBuildOrders.draw_clustering()
         self.ZergBuildOrders.draw_clustering()
         self.ProtossBuildOrders.draw_clustering()
+        self.generate_svg()
+
+
 
 
