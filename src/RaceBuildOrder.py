@@ -3,7 +3,6 @@ from typing import Type
 import numpy as np
 import numpy.typing as npt
 from numpy import array
-#from sklearn.preprocessing import LabelEncoder
 from LabelEncoder import LabelEncoder
 from Constants import BUILD_ORDER
 from Constants import BUILD_ORDER_STR
@@ -29,11 +28,9 @@ class RaceBuildOrder:
         self.ProtossLevenshteinMatrix: np.array = np.zeros(0)
         
         self.Race = Race
-        #self.Label_Encoder.fit([])
 
 
     def add_build_order(self, bo : BUILD_ORDER_STR, bos: List[BUILD_ORDER_STR]):
-        #self.build_labels(bo)
         bos.append(self.Label_Encoder.transform(bo))
 
     def add_terran_build_order(self, bo : BUILD_ORDER_STR):
@@ -51,7 +48,6 @@ class RaceBuildOrder:
         # Populate Upper triangular and mirror on lower triangular, diagonal stays zero
         for i in range(0, length):
             for j in range(i+1, length):
-                #TO DO: Possible optimisation here? 
                 left = [chr(letter) for letter in build_orders[i]] 
                 right = [chr(letter) for letter in build_orders[j]]
                 levenshtein_matrix[i,j] = levenshtein_distance_metric(left, right)
@@ -78,10 +74,6 @@ class RaceBuildOrder:
             print(self.ZergLevenshteinMatrix)
             print('Versus Protoss: ')
             print(self.ProtossLevenshteinMatrix)
-
-
-    #def build_labels(self, build_order: BUILD_ORDER_STR)->None:
-    #    self.Label_Encoder.fit(np.append(self.Label_Encoder.classes_, array(build_order)))
 
     def decode_labels(self, build_order: BUILD_ORDER)->BUILD_ORDER_STR:
         return self.Label_Encoder.inverse_transform(build_order)
@@ -119,7 +111,6 @@ class RaceBuildOrder:
     def save_build_order_file(self, filename: str, data: List[BUILD_ORDER])->None:
         with open(filename, 'a') as the_file:
             for build_event in data:
-                #the_file.write(', '.join(str(x) for x in build_event.tolist()))
                 the_file.write(', '.join(str(x) for x in build_event))
                 the_file.write('\n')
 
@@ -132,13 +123,10 @@ class RaceBuildOrder:
         match self.Race:
             case Race.Terran:
                 self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderTerran))
-                #np.save(os.path.join(directory, Constants.LabelEncoderTerran), self.Label_Encoder.classes_)
             case Race.Zerg:
                 self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderZerg))
-                #np.save(os.path.join(directory, Constants.LabelEncoderZerg), self.Label_Encoder.classes_)
             case Race.Protoss:
                 self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderProtoss))
-                #np.save(os.path.join(directory, Constants.LabelEncoderProtoss), self.Label_Encoder.classes_)
 
     def load_build_orders(self, directory:str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
@@ -149,12 +137,9 @@ class RaceBuildOrder:
         match self.Race:
             case Race.Terran:
                 self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderTerran))
-                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderTerran), allow_pickle=True)
             case Race.Zerg:
-                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderZerg), allow_pickle=True)
                 self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderZerg))
             case Race.Protoss:
-                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderProtoss), allow_pickle=True)
                 self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderProtoss))
 
 
@@ -186,6 +171,7 @@ class RaceBuildOrder:
             if labels[i] != -1:
                 build_order_string: str = ','.join(labeled_build_order)
                 dendrogram.add_node(labels[i], build_order_string)
+        
         dendrogram.draw_graph()
     
     def draw_clustering(self):
