@@ -11,7 +11,6 @@ import os
 import Constants
 from dendrogram import Dendrogram
 import numpy as np
-import subprocess
 
 
 class ClusteringController:
@@ -100,7 +99,6 @@ class ClusteringController:
         for file in data_files:
             dot_command:str = 'dot -T svg "{}" -O'.format(file)
             os.system(dot_command)
-            #subprocess.run([dot_command])
 
     def draw_dendrograms(self):
         self.TerranBuildOrders.draw_clustering()

@@ -9,6 +9,6 @@ class Dendrogram:
         self.graph.edge(str(group_index), build_order)
         
     def draw_graph(self):
-        self.graph.view()
+        self.graph.render()
 
 

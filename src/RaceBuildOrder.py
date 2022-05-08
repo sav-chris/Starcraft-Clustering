@@ -162,18 +162,13 @@ class RaceBuildOrder:
 
         return self.clustering_vT, self.clustering_vZ, self.clustering_vP
 
-
-    #def format_as_string(self, labeled_build_order: List[str], interval: int)->str:
-    #    new_lines = list(','.join(l + '\n' * (n % interval == (interval-1))) for n, l in enumerate(labeled_build_order)))
-
-
     def draw_dendrogram(self, dendrogram: Dendrogram, clustering: OPTICS, build_orders: List[BUILD_ORDER]):
         labels = clustering.labels_
         for i in range(0, len(labels)):
             build_order = build_orders[i]
             labeled_build_order = self.Label_Encoder.inverse_transform(build_order)
             if labels[i] != -1:
-                #new_lines = list(','.join(l + '\n' * (n % 4 == 3) for n, l in enumerate(labeled_build_order)))
+                # insert newlines every 4 items
                 new_lines = [l + '\n' * (n % 4 == 3) for n, l in enumerate(labeled_build_order)]
                 build_order_string: str = ','.join(new_lines)
                 dendrogram.add_node(labels[i], build_order_string)

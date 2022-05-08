@@ -2,7 +2,7 @@ import datetime
 from typing import TypedDict
 from typing import List
 import Constants
-from Constants import GameTime, BuildEvent, Race
+from Constants import GameTime, Race
 
 class Player:
 
@@ -20,9 +20,9 @@ class Player:
         self.IsWinner: bool = replay['players'][player_index]['is_winner']
         self.BuildOrder: Constants.BUILD_ORDER_STR = self.extract_build_order(replay['players'][player_index]['buildOrder'], cut_off_time)
         
-    def is_structure(self, name:str)->bool:
-        structures = []
-        if name in structures:
+    def is_worker_or_cheap_unit(self, name:str)->bool:
+        cheap_units = ['SCV', 'PROBE', 'MARINE', 'ZERGLING']
+        if name.upper() in cheap_units:
             return True
         return False
 
