@@ -26,9 +26,7 @@ else:
     clustering_controller.load_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
 
 print('Clustering ...')
-#Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP = 
 clustering_controller.optics_clustering()
-#Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
 clustering_controller.draw_dendrograms()
 
 

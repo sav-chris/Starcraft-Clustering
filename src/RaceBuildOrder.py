@@ -3,7 +3,8 @@ from typing import Type
 import numpy as np
 import numpy.typing as npt
 from numpy import array
-from sklearn.preprocessing import LabelEncoder
+#from sklearn.preprocessing import LabelEncoder
+from LabelEncoder import LabelEncoder
 from Constants import BUILD_ORDER
 from Constants import BUILD_ORDER_STR
 from Constants import Race
@@ -28,11 +29,11 @@ class RaceBuildOrder:
         self.ProtossLevenshteinMatrix: np.array = np.zeros(0)
         
         self.Race = Race
-        self.Label_Encoder.fit([])
+        #self.Label_Encoder.fit([])
 
 
     def add_build_order(self, bo : BUILD_ORDER_STR, bos: List[BUILD_ORDER_STR]):
-        self.build_labels(bo)
+        #self.build_labels(bo)
         bos.append(self.Label_Encoder.transform(bo))
 
     def add_terran_build_order(self, bo : BUILD_ORDER_STR):
@@ -79,8 +80,8 @@ class RaceBuildOrder:
             print(self.ProtossLevenshteinMatrix)
 
 
-    def build_labels(self, build_order: BUILD_ORDER_STR)->None:
-        self.Label_Encoder.fit(np.append(self.Label_Encoder.classes_, array(build_order)))
+    #def build_labels(self, build_order: BUILD_ORDER_STR)->None:
+    #    self.Label_Encoder.fit(np.append(self.Label_Encoder.classes_, array(build_order)))
 
     def decode_labels(self, build_order: BUILD_ORDER)->BUILD_ORDER_STR:
         return self.Label_Encoder.inverse_transform(build_order)
@@ -118,7 +119,8 @@ class RaceBuildOrder:
     def save_build_order_file(self, filename: str, data: List[BUILD_ORDER])->None:
         with open(filename, 'a') as the_file:
             for build_event in data:
-                the_file.write(', '.join(str(x) for x in build_event.tolist()))
+                #the_file.write(', '.join(str(x) for x in build_event.tolist()))
+                the_file.write(', '.join(str(x) for x in build_event))
                 the_file.write('\n')
 
     def save_build_orders(self, directory: str)->None:
@@ -129,25 +131,31 @@ class RaceBuildOrder:
         # Save Labels
         match self.Race:
             case Race.Terran:
-                np.save(os.path.join(directory, Constants.LabelEncoderTerran), self.Label_Encoder.classes_)
+                self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderTerran))
+                #np.save(os.path.join(directory, Constants.LabelEncoderTerran), self.Label_Encoder.classes_)
             case Race.Zerg:
-                np.save(os.path.join(directory, Constants.LabelEncoderZerg), self.Label_Encoder.classes_)
+                self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderZerg))
+                #np.save(os.path.join(directory, Constants.LabelEncoderZerg), self.Label_Encoder.classes_)
             case Race.Protoss:
-                np.save(os.path.join(directory, Constants.LabelEncoderProtoss), self.Label_Encoder.classes_)
+                self.Label_Encoder.save_to_file(os.path.join(directory, Constants.LabelEncoderProtoss))
+                #np.save(os.path.join(directory, Constants.LabelEncoderProtoss), self.Label_Encoder.classes_)
 
     def load_build_orders(self, directory:str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
         self.load_build_order_file(VT_NPY, self.VersusTerran)
         self.load_build_order_file(VZ_NPY, self.VersusZerg)
         self.load_build_order_file(VP_NPY, self.VersusProtoss)
-        # Save Labels
+        # load Labels
         match self.Race:
             case Race.Terran:
-                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderTerran), allow_pickle=True)
+                self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderTerran))
+                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderTerran), allow_pickle=True)
             case Race.Zerg:
-                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderZerg), allow_pickle=True)
+                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderZerg), allow_pickle=True)
+                self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderZerg))
             case Race.Protoss:
-                self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderProtoss), allow_pickle=True)
+                #self.Label_Encoder.classes_ = np.load(os.path.join(directory, Constants.LabelEncoderProtoss), allow_pickle=True)
+                self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderProtoss))
 
 
     def save_levenshtein_matricies(self, directory: str)->None:
@@ -176,7 +184,7 @@ class RaceBuildOrder:
             build_order = build_orders[i]
             labeled_build_order = self.Label_Encoder.inverse_transform(build_order)
             if labels[i] != -1:
-                build_order_string: str = np.array2string(labeled_build_order, separator=',')
+                build_order_string: str = ','.join(labeled_build_order)
                 dendrogram.add_node(labels[i], build_order_string)
         dendrogram.draw_graph()
     

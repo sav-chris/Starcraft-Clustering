@@ -99,15 +99,3 @@ class ClusteringController:
         self.ProtossBuildOrders.draw_clustering()
 
 
-
-
-
-
-
-
-
-
-        
-        
-        
-        

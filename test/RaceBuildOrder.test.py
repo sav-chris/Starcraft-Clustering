@@ -48,8 +48,8 @@ class TestRaceBuildOrder(unittest.TestCase):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
         test_lables1 : RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Spawning Pool', 'Zergling']
         test_lables2 : RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Extractor', 'Hatchery', 'Zergling']
-        race_build_order.build_labels(test_lables1)
-        race_build_order.build_labels(test_lables2)
+        race_build_order.Label_Encoder.learn_words(test_lables1)
+        race_build_order.Label_Encoder.learn_words(test_lables2)
         test_lables3 : RaceBuildOrder.BUILD_ORDER_STR = ['Spawning Pool', 'Drone', 'Extractor']
         test_build_order: RaceBuildOrder.BUILD_ORDER = race_build_order.Label_Encoder.transform(test_lables3)
         numpy.testing.assert_array_equal(race_build_order.decode_labels(test_build_order), np.array(test_lables3))
