@@ -30,14 +30,14 @@ class ClusteringController:
             race_build_order = self.ZergBuildOrders
         return race_build_order
 
-    def load_directory(self, filepath: str, verbose: bool = False):
+    def load_directory(self, filepath: str, verbose: bool = False, filter_cheap_units: bool = False):
         filepattern: str = os.path.join(filepath, Constants.DATA_DIR_FILTER)
         data_files: List[str] = glob.glob(filepattern,  recursive=True)
         for data_file in data_files:
             if verbose:
                 print("Loading: " + data_file)
             result_replay: TypedDict = spawningtool.parser.parse_replay(data_file)
-            replay: Replay = Replay(result_replay, Constants.CUTOFF_TIME)
+            replay: Replay = Replay(result_replay, Constants.CUTOFF_TIME, filter_cheap_units)
             race_build_order_p1: RaceBuildOrder = self.select_race_build_order(replay.Player1)
             race_build_order_p2: RaceBuildOrder = self.select_race_build_order(replay.Player2)
 
