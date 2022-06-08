@@ -22,10 +22,14 @@ class TestClusteringController(unittest.TestCase):
 
         clustering_TvT, clustering_TvZ, clustering_TvP = controller.TerranBuildOrders.OPTICS_clustering()
         
-
-
         print('')
 
+    def test_make_dendrograms_folder(self):
+        controller: ClusteringController = ClusteringController()
+        folder: str = controller.make_dendrograms_folder(TestConstants.TEST_DATA_DENDROGRAMS_DIR)
+
+        self.assertTrue(os.path.exists(folder))
+        os.rmdir(folder)
 
 if __name__ == '__main__':
     unittest.main()        

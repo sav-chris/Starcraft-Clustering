@@ -11,17 +11,24 @@ import os
 import Constants
 from dendrogram import Dendrogram
 import numpy as np
-
+from datetime import datetime
+import Hyperparameters
+import json
 
 class ClusteringController:
     
-    def __init__(self):
+    def __init__(self, hyperparameters: Hyperparameters=Hyperparameters.Hyperparameters()):
         self.TerranBuildOrders : RaceBuildOrder = RaceBuildOrder(Race.Terran)
         self.ZergBuildOrders   : RaceBuildOrder = RaceBuildOrder(Race.Zerg)
         self.ProtossBuildOrders: RaceBuildOrder = RaceBuildOrder(Race.Protoss)
-        self.CutOffTime: GameTime = Constants.CUTOFF_TIME
-        self.ClusteringParams: ClusteringParams = Constants.CLUST_PARAMS
+        self.Hyperparameters = hyperparameters
 
+    def save_hyperparameters(self, filename: str):
+        paramsJsonStr = json.dumps(self.Hyperparameters, default=lambda obj: obj.__dict__)
+
+        with open(filename, "w") as text_file:
+            text_file.write(paramsJsonStr)
+        
     def select_race_build_order(self, player: Player)->RaceBuildOrder:
         race_build_order: RaceBuildOrder = self.ProtossBuildOrders
         if player.Race == Race.Terran:
@@ -30,14 +37,14 @@ class ClusteringController:
             race_build_order = self.ZergBuildOrders
         return race_build_order
 
-    def load_directory(self, filepath: str, verbose: bool = False, filter_cheap_units: bool = False):
+    def load_directory(self, filepath: str, verbose: bool = False):
         filepattern: str = os.path.join(filepath, Constants.DATA_DIR_FILTER)
         data_files: List[str] = glob.glob(filepattern,  recursive=True)
         for data_file in data_files:
             if verbose:
                 print("Loading: " + data_file)
             result_replay: TypedDict = spawningtool.parser.parse_replay(data_file)
-            replay: Replay = Replay(result_replay, Constants.CUTOFF_TIME, filter_cheap_units)
+            replay: Replay = Replay(result_replay, self.Hyperparameters.CutOffTime, self.Hyperparameters.filter_cheap_units)
             race_build_order_p1: RaceBuildOrder = self.select_race_build_order(replay.Player1)
             race_build_order_p2: RaceBuildOrder = self.select_race_build_order(replay.Player2)
 
@@ -93,19 +100,33 @@ class ClusteringController:
 
         return Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
     
-    def generate_svg(self):
-        filepattern: str = os.path.join(Constants.DENDROGRAMS_DIR, Constants.GRAPHVIZ_DIR_FILTER)
+    def generate_svg(self, folder):
+        filepattern: str = os.path.join(folder, Constants.GRAPHVIZ_DIR_FILTER)
         data_files: List[str] = glob.glob(filepattern)
         for file in data_files:
             dot_command:str = 'dot -T svg "{}" -O'.format(file)
             os.system(dot_command)
 
+    def make_dendrograms_folder(self, root_dir)->str:
+        timestamp:str = datetime.today().isoformat()
+        timestamp = timestamp.replace(":", "-") 
+        timestamp_folder: str = os.path.join(root_dir, timestamp)
+        os.makedirs(timestamp_folder, exist_ok=True)
+        return timestamp_folder
+
     def draw_dendrograms(self):
-        self.TerranBuildOrders.draw_clustering()
-        self.ZergBuildOrders.draw_clustering()
-        self.ProtossBuildOrders.draw_clustering()
-        self.generate_svg()
+        timestamp_folder:str = self.make_dendrograms_folder(Constants.DENDROGRAMS_DIR)        
+        
+        self.TerranBuildOrders.draw_clustering(timestamp_folder)
+        self.ZergBuildOrders.draw_clustering(timestamp_folder)
+        self.ProtossBuildOrders.draw_clustering(timestamp_folder)
+        self.generate_svg(timestamp_folder)
 
+        self.save_hyperparameters(os.path.join(timestamp_folder, Constants.HyperparametersFilename))
 
+        
+        
 
-
+        
+        
+        

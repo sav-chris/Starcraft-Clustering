@@ -7,5 +7,6 @@ TEST_LEVENSHTEIN_DIR: str = os.path.join(TEST_DATA_DIR, 'levenshtein')
 TEST_BUILD_ORDER_DIR: str = os.path.join(TEST_DATA_DIR, 'build.order')
 TEST_BUILD_ORDER_EXAMPLE_DIR: str = os.path.join(TEST_DATA_DIR, 'build.order.example')
 TEST_LABEL_ENCODER_DIR: str = os.path.join(TEST_DATA_DIR, 'label.encoder')
+TEST_DATA_DENDROGRAMS_DIR: str = os.path.join(TEST_DATA_DIR, 'dendrograms')
 
 

@@ -4,13 +4,14 @@ import numpy.typing as npt
 from sklearn.cluster import OPTICS
 from ClusteringController import ClusteringController
 import Constants
+import Hyperparameters
 
-
-clustering_controller: ClusteringController = ClusteringController()
+hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters(Constants.CUTOFF_TIME, Constants.CLUST_PARAMS, True)
+clustering_controller: ClusteringController = ClusteringController(hyperparameters)
 
 if clustering_controller.count_npy_files_in_dir(Constants.BUILD_ORDER_DIR) == 0:
     print('Loading Replay Files ... ')
-    clustering_controller.load_directory(Constants.DATA_DIR, True, True)
+    clustering_controller.load_directory(Constants.DATA_DIR, True)
     clustering_controller.save_build_orders(Constants.BUILD_ORDER_DIR)
 else:
     print('Loading Cached Build Orders ... ')

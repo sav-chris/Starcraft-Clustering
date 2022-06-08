@@ -175,7 +175,8 @@ class RaceBuildOrder:
         
         dendrogram.draw_graph()
     
-    def draw_clustering(self):
+    def draw_clustering(self, folder):
+        
 
         match self.Race:
             case Race.Terran:
@@ -191,9 +192,9 @@ class RaceBuildOrder:
                 filename_vZ = Constants.PROTOSS_VZ_GV
                 filename_vP = Constants.PROTOSS_VP_GV
  
-        filename_vT = os.path.join(Constants.DENDROGRAMS_DIR, filename_vT)
-        filename_vZ = os.path.join(Constants.DENDROGRAMS_DIR, filename_vZ)
-        filename_vP = os.path.join(Constants.DENDROGRAMS_DIR, filename_vP)
+        filename_vT = os.path.join(folder, filename_vT)
+        filename_vZ = os.path.join(folder, filename_vZ)
+        filename_vP = os.path.join(folder, filename_vP)
         
         dendrogram_vT: Dendrogram = Dendrogram("Dendrogram", filename_vT)
         dendrogram_vZ: Dendrogram = Dendrogram("Dendrogram", filename_vZ)

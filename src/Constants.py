@@ -71,6 +71,8 @@ LabelEncoderTerran: str = 'LabelEncoderTerran.npy'
 LabelEncoderZerg: str = 'LabelEncoderZerg.npy'
 LabelEncoderProtoss: str = 'LabelEncoderProtoss.npy'
 
+HyperparametersFilename: str = 'Hyperparameters.json'
+
 def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:
     return Levenshtein.distance(left, right)
 
