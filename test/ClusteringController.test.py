@@ -20,7 +20,7 @@ class TestClusteringController(unittest.TestCase):
         controller.load_build_orders(TestConstants.TEST_BUILD_ORDER_EXAMPLE_DIR)
         controller.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR )
 
-        clustering_TvT, clustering_TvZ, clustering_TvP = controller.TerranBuildOrders.OPTICS_clustering()
+        clustering_TvT, clustering_TvZ, clustering_TvP = controller.TerranBuildOrders.OPTICS_clustering(controller.Hyperparameters)
         
         print('')
 

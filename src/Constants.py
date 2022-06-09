@@ -22,7 +22,7 @@ class ClusteringParams:
         self.epsilon: int = epsilon
         self.min_samples = min_samples
 
-CLUST_PARAMS: ClusteringParams = ClusteringParams(30, 5)        
+CLUST_PARAMS: ClusteringParams = ClusteringParams(30, 3)        
 
 class BuildEvent:
     def __init__(self, minutes, seconds, name):
@@ -66,6 +66,7 @@ PROTOSS_VT_GV: str = 'Protoss(PvT).gv'
 PROTOSS_VZ_GV: str = 'Protoss(PvZ).gv'
 PROTOSS_VP_GV: str = 'Protoss(PvP).gv'
 
+UNCATEGORISED_FILE: str = 'Uncategorised.txt'
 
 LabelEncoderTerran: str = 'LabelEncoderTerran.npy'
 LabelEncoderZerg: str = 'LabelEncoderZerg.npy'

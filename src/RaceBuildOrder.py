@@ -13,6 +13,8 @@ import os
 from sklearn.cluster import OPTICS
 import json
 from dendrogram import Dendrogram
+from Hyperparameters import Hyperparameters
+import collections
 
 class RaceBuildOrder:
 
@@ -29,6 +31,30 @@ class RaceBuildOrder:
         
         self.Race = Race
 
+        self.clustering_vT = None
+        self.clustering_vZ = None
+        self.clustering_vP = None
+
+    def count_uncategorised(self, optics: OPTICS)->int:
+        counts:collections.Counter = collections.Counter(optics.labels_)
+        return counts[-1]
+
+    def save_uncategorised(self, filepath:str):
+        T_Uncategorised:int = self.count_uncategorised(self.clustering_vT)
+        Z_Uncategorised:int = self.count_uncategorised(self.clustering_vZ)
+        P_Uncategorised:int = self.count_uncategorised(self.clustering_vP)
+        print(self.Race)
+        print(f'Uncategorised Terran Builds: {T_Uncategorised}')
+        print(f'Uncategorised Zerg Builds: {Z_Uncategorised}')
+        print(f'Uncategorised Protoss Builds: {P_Uncategorised}')
+
+        txt_uncategorised:str = f'Race: {self.Race} \n'
+        txt_uncategorised = txt_uncategorised + f'Uncategorised Terran Builds: {T_Uncategorised} \n'
+        txt_uncategorised = txt_uncategorised + f'Uncategorised Zerg Builds: {Z_Uncategorised} \n'
+        txt_uncategorised = txt_uncategorised + f'Uncategorised Protoss Builds: {P_Uncategorised}'
+
+        with open(filepath, "w") as text_file:
+            text_file.write(txt_uncategorised)
 
     def add_build_order(self, bo : BUILD_ORDER_STR, bos: List[BUILD_ORDER_STR]):
         bos.append(self.Label_Encoder.transform(bo))
@@ -155,10 +181,10 @@ class RaceBuildOrder:
         self.ZergLevenshteinMatrix    = np.load( VZ_NPY)
         self.ProtossLevenshteinMatrix = np.load( VP_NPY)
 
-    def OPTICS_clustering(self):
-        self.clustering_vT = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.TerranLevenshteinMatrix)
-        self.clustering_vZ = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.ZergLevenshteinMatrix)
-        self.clustering_vP = OPTICS(eps=30, min_samples=5, metric='precomputed').fit(self.ProtossLevenshteinMatrix)
+    def OPTICS_clustering(self, hyperparameters: Hyperparameters):
+        self.clustering_vT = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.TerranLevenshteinMatrix)
+        self.clustering_vZ = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ZergLevenshteinMatrix)
+        self.clustering_vP = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ProtossLevenshteinMatrix)
 
         return self.clustering_vT, self.clustering_vZ, self.clustering_vP
 
@@ -203,6 +229,9 @@ class RaceBuildOrder:
         self.draw_dendrogram(dendrogram_vT, self.clustering_vT, self.VersusTerran)
         self.draw_dendrogram(dendrogram_vZ, self.clustering_vZ, self.VersusZerg)
         self.draw_dendrogram(dendrogram_vP, self.clustering_vP, self.VersusProtoss)
+
+        uncategorised_filepath: str = os.path.join(folder,  f'{self.Race}.{Constants.UNCATEGORISED_FILE}')
+        self.save_uncategorised(uncategorised_filepath)
 
 
         

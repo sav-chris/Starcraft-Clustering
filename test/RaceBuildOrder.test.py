@@ -1,6 +1,7 @@
 import sys
 import os
 import unittest
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 #from ..src.RaceBuildOrder import RaceBuildOrder
 # https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
@@ -13,6 +14,7 @@ import TestConstants
 import glob
 from typing import List
 from typing import Type
+import Hyperparameters
 
 class TestRaceBuildOrder(unittest.TestCase):
 
@@ -99,6 +101,8 @@ class TestRaceBuildOrder(unittest.TestCase):
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VP ), VP_NPY)
 
     def test_OPTICS_clustering(self):
+        hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters()
+
         race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
         race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
         race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
@@ -107,9 +111,9 @@ class TestRaceBuildOrder(unittest.TestCase):
         race_build_order_z.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         race_build_order_p.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         
-        Terran_vt, Terran_vz, Terran_vp = race_build_order_t.OPTICS_clustering()
-        Zerg_vt, Zerg_vz, Zerg_vp = race_build_order_t.OPTICS_clustering()
-        Protoss_vt, Protoss_vz, Protoss_vp = race_build_order_t.OPTICS_clustering()
+        Terran_vt, Terran_vz, Terran_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
+        Zerg_vt, Zerg_vz, Zerg_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
+        Protoss_vt, Protoss_vz, Protoss_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
 
         print('')
 

@@ -94,9 +94,9 @@ class ClusteringController:
 
 
     def optics_clustering(self):
-        Terran_vT, Terran_vZ, Terran_vP = self.TerranBuildOrders.OPTICS_clustering()
-        Zerg_vT, Zerg_vZ, Zerg_vP = self.ZergBuildOrders.OPTICS_clustering()
-        Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering()
+        Terran_vT, Terran_vZ, Terran_vP = self.TerranBuildOrders.OPTICS_clustering(self.Hyperparameters)
+        Zerg_vT, Zerg_vZ, Zerg_vP = self.ZergBuildOrders.OPTICS_clustering(self.Hyperparameters)
+        Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering(self.Hyperparameters)
 
         return Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
     
