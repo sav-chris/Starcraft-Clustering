@@ -72,3 +72,19 @@ cd src
 ```bash
 python clustering.py
 ```
+
+# Running test cases
+
+Once you have created and activated your virtual environment, you can run the test cases.
+
+Go to test folder
+```bash
+cd test
+```
+
+Each test file is run individually, ie:
+```bash
+python ClusteringController.test.py
+```
+
+
