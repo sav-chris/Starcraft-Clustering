@@ -1,0 +1,375 @@
+digraph Dendrogram {
+	10 -> "SupplyDepot,Barracks,Refinery,Orbital Command
+,Reaper,CommandCenter,SupplyDepot,Factory
+,Refinery,Bunker,Orbital Command,FactoryTechLab
+,Starport,BarracksReactor,Siege Tank,Viking
+,SupplyDepot,Refinery,Siege Tank"
+	0 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Refinery,Reaper,Orbital Command,Reaper
+,SupplyDepot,Reaper,Factory"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,Widow Mine,FactoryTechLab
+,Medivac,Orbital Command,FactoryTechLab,Refinery
+,Cyclone"
+	10 -> "SupplyDepot,Barracks,Refinery,Orbital Command
+,Reaper,CommandCenter,SupplyDepot,Factory
+,Refinery,BarracksReactor,Bunker,Orbital Command
+,Starport,FactoryTechLab,Refinery,FactoryTechLab
+,Raven,Cyclone,SupplyDepot,CommandCenter
+"
+	0 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Reaper,Orbital Command,SupplyDepot,Reaper
+,Reaper,CommandCenter,Refinery,Reaper
+,SupplyDepot,Reaper,Reaper,Bunker
+,SupplyDepot"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,Widow Mine,FactoryTechLab
+,Medivac,Orbital Command,Cyclone,Refinery
+,StarportTechLab,SupplyDepot"
+	13 -> "SupplyDepot,Refinery,Barracks,Orbital Command
+,Reaper,CommandCenter,Factory,Refinery
+,BarracksReactor,SupplyDepot,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Marauder,Concussive Shells,Orbital Command
+,Medivac,Hellion,Hellion,Marauder
+,SupplyDepot,StarportTechLab,Refinery,SupplyDepot
+"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,FactoryTechLab,FactoryTechLab
+,Raven,Orbital Command,Refinery,Cyclone
+"
+	6 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,FactoryTechLab,Medivac,Siege Tank,Orbital Command
+,Refinery"
+	11 -> "SupplyDepot,Barracks,Refinery,Reaper
+,Orbital Command,CommandCenter,SupplyDepot,Reaper
+,Refinery,Factory,BarracksReactor,Orbital Command
+,FactoryTechLab,Starport,Refinery,Bunker
+,Cyclone,SupplyDepot,StarportTechLab,Siege Tank
+,SupplyDepot"
+	6 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,FactoryTechLab,Refinery,Siege Tank,Orbital Command
+,StarportTechLab,Raven"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,Orbital Command,FactoryTechLab,StarportTechLab,Cyclone
+"
+	1 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Reaper,Orbital Command,Refinery,Reaper
+,SupplyDepot,Reaper,Reaper,Factory
+,Reaper,CommandCenter,SupplyDepot,FactoryTechLab
+,Starport,Cyclone,StarportTechLab"
+	2 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,FactoryTechLab,Cyclone
+,StarportTechLab,Cyclone,Orbital Command"
+	1 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Reaper,Orbital Command,Refinery,Reaper
+,Reaper,SupplyDepot,Reaper,Reaper
+,Factory,Reaper,SupplyDepot,FactoryTechLab
+,CommandCenter,Starport,Cyclone"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Orbital Command,Reaper,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,FactoryTechLab,StarportTechLab,Orbital Command,SupplyDepot
+,Cyclone"
+	2 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,FactoryTechLab,Cyclone
+,Refinery,StarportTechLab,Orbital Command,Raven
+,Siege Tank"
+	11 -> "SupplyDepot,Barracks,Refinery,Reaper
+,Orbital Command,CommandCenter,SupplyDepot,Factory
+,Bunker,Refinery,BarracksReactor,Orbital Command
+,Hellion,Starport,FactoryTechLab,SupplyDepot
+,Siege Tank,Viking,Barracks,SupplyDepot
+"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,Widow Mine,FactoryTechLab
+,Medivac,Orbital Command,Cyclone,Refinery
+,StarportTechLab,SupplyDepot"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,SupplyDepot
+,Reaper,Starport,Widow Mine,BarracksReactor
+,FactoryTechLab,Refinery,StarportTechLab,Orbital Command
+,Cyclone,SupplyDepot,Raven"
+	6 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Orbital Command,Reaper,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,FactoryTechLab,Refinery,Cyclone,Orbital Command
+,StarportTechLab,Raven"
+	4 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,Reaper
+,SupplyDepot,Hellion,Starport,BarracksReactor
+,FactoryTechLab,Refinery,Cyclone,StarportTechLab
+,Orbital Command,Raven,SupplyDepot"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Orbital Command,Reaper,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,FactoryTechLab,Orbital Command,StarportTechLab,Barracks
+,Cyclone"
+	4 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,Reaper
+,SupplyDepot,Hellion,Starport,BarracksReactor
+,FactoryTechLab,Refinery,Cyclone,StarportTechLab
+,Orbital Command,Raven,SupplyDepot"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,Reaper,Reaper,FactoryTechLab,Medivac
+,Orbital Command,Cyclone"
+	13 -> "SupplyDepot,Refinery,Barracks,Orbital Command
+,Reaper,CommandCenter,Factory,BarracksReactor
+,SupplyDepot,Refinery,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Marauder,Concussive Shells,Medivac
+,Hellion,Hellion,Marauder,SupplyDepot
+,Refinery,SupplyDepot"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,Widow Mine,FactoryTechLab
+,Medivac,Refinery,Siege Tank,Orbital Command
+,StarportTechLab,SupplyDepot"
+	12 -> "SupplyDepot,Refinery,Barracks,Reaper
+,Orbital Command,SupplyDepot,CommandCenter,Factory
+,BarracksReactor,Refinery,Starport,BarracksTechLab
+,Hellion,Hellion,Orbital Command,Hellion
+,Hellion,Orbital Command,SupplyDepot,Raven
+,Hellion,Hellion,BarracksTechLab,Refinery
+,SupplyDepot"
+	11 -> "SupplyDepot,Barracks,Refinery,Reaper
+,Orbital Command,CommandCenter,SupplyDepot,Factory
+,Refinery,Bunker,BarracksReactor,Orbital Command
+,Hellion,Starport,Refinery,FactoryTechLab
+,StarportTechLab,SupplyDepot,Cyclone,Raven
+,SupplyDepot"
+	3 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,Widow Mine,FactoryTechLab
+,Refinery,Medivac,Orbital Command,Cyclone
+,StarportTechLab"
+	0 -> "SupplyDepot,Barracks,Refinery,Orbital Command
+,Reaper,SupplyDepot,Bunker,Bunker
+,Factory"
+	0 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Orbital Command,Reaper,Refinery,Reaper
+,SupplyDepot,Reaper,Reaper,Factory
+"
+	11 -> "SupplyDepot,Barracks,Refinery,Reaper
+,Orbital Command,CommandCenter,SupplyDepot,Factory
+,Bunker,Refinery,BarracksReactor,Orbital Command
+,Hellion,Starport,Refinery,FactoryTechLab
+,SupplyDepot,Medivac,Cyclone,SupplyDepot
+,SupplyDepot"
+	1 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Hellion,Hellion,Hellion,BarracksTechLab
+,SupplyDepot,Cyclone"
+	1 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Reaper,Orbital Command,Refinery,Reaper
+,Reaper,Reaper,Factory,SupplyDepot
+,Reaper,Reaper,FactoryTechLab,CommandCenter
+,Starport,Cyclone,SupplyDepot,StarportTechLab
+"
+	2 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,FactoryTechLab,Starport,Cyclone
+,Refinery,StarportTechLab,Orbital Command,Raven
+,Siege Tank,SupplyDepot"
+	4 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,Reaper
+,SupplyDepot,Hellion,Starport,BarracksTechLab
+,FactoryTechLab,Refinery,Cyclone,Orbital Command
+,Raven,CommandCenter"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,FactoryTechLab
+,Refinery,Orbital Command,StarportTechLab,Cyclone
+"
+	12 -> "SupplyDepot,Refinery,Barracks,Reaper
+,Orbital Command,SupplyDepot,CommandCenter,Factory
+,BarracksReactor,Refinery,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Orbital Command,Refinery,Raven
+,Hellion,Hellion,BarracksTechLab,SupplyDepot
+"
+	10 -> "SupplyDepot,Barracks,Refinery,Orbital Command
+,Reaper,CommandCenter,SupplyDepot,Factory
+,Refinery,BarracksReactor,Hellion,Orbital Command
+,Starport,FactoryTechLab,CommandCenter,Raven
+,FactoryTechLab,SupplyDepot"
+	13 -> "SupplyDepot,Refinery,Barracks,Orbital Command
+,Reaper,CommandCenter,Factory,BarracksReactor
+,SupplyDepot,Refinery,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Raven,Refinery,Hellion
+,Hellion,SupplyDepot,BarracksTechLab,SupplyDepot
+"
+	13 -> "SupplyDepot,Refinery,Barracks,Reaper
+,Orbital Command,CommandCenter,Factory,BarracksReactor
+,SupplyDepot,Refinery,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Raven,Hellion,Hellion
+,SupplyDepot,Refinery,SupplyDepot,FactoryTechLab
+"
+	9 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksTechLab
+,SupplyDepot,Starport,Cyclone,BarracksTechLab
+,Refinery,Banshee,Orbital Command,Cyclone
+,BarracksReactor,SupplyDepot"
+	5 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Widow Mine,Starport,FactoryTechLab
+,Refinery,Cyclone,StarportTechLab,Orbital Command
+,Raven,Siege Tank"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,StarportTechLab,FactoryTechLab,Orbital Command,Raven
+,Cyclone"
+	5 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Widow Mine,Starport,FactoryTechLab
+,Refinery,StarportTechLab,Orbital Command,Cyclone
+,Raven,SupplyDepot"
+	4 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,Reaper
+,SupplyDepot,Hellion,Starport,BarracksTechLab
+,FactoryTechLab,Refinery,Cyclone,Orbital Command
+,Raven,Cyclone"
+	13 -> "SupplyDepot,Refinery,Barracks,Orbital Command
+,Reaper,CommandCenter,Factory,SupplyDepot
+,BarracksReactor,Refinery,Starport,Hellion
+,Hellion,BarracksTechLab,Orbital Command,Hellion
+,Hellion,Raven,SupplyDepot,Hellion
+,Hellion,Refinery,BarracksTechLab,SupplyDepot
+"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Starport,Widow Mine,FactoryTechLab
+,Refinery,StarportTechLab,Orbital Command,Cyclone
+,SupplyDepot,Raven"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Orbital Command,Reaper,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Widow Mine,Starport,FactoryTechLab
+,Refinery,Orbital Command,StarportTechLab,Cyclone
+,SupplyDepot,Raven"
+	1 -> "SupplyDepot,Barracks,Refinery,Barracks
+,Orbital Command,Reaper,Refinery,Reaper
+,SupplyDepot,Reaper,Reaper,Factory
+,SupplyDepot,Reaper,FactoryTechLab,CommandCenter
+,Starport,Cyclone,StarportTechLab"
+	1 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Orbital Command,Reaper,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport"
+	1 -> "SupplyDepot,Refinery,Barracks,Reaper
+,Orbital Command,CommandCenter,Factory,Refinery
+,BarracksReactor,SupplyDepot,Starport,BarracksTechLab
+"
+	9 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksTechLab
+,SupplyDepot,Starport,Cyclone,BarracksTechLab
+,Refinery,Banshee,Cyclone,Orbital Command
+,BarracksReactor,SupplyDepot"
+	5 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Widow Mine,Starport,FactoryTechLab
+,Refinery,Cyclone,StarportTechLab,Orbital Command
+,Raven,SupplyDepot,Siege Tank"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Hellion,Starport,FactoryTechLab
+,Refinery,Orbital Command,Cyclone,Medivac
+,SupplyDepot,Siege Tank"
+	12 -> "SupplyDepot,Refinery,Barracks,Orbital Command
+,Reaper,SupplyDepot,CommandCenter,Factory
+,BarracksReactor,Refinery,Starport,BarracksTechLab
+,Hellion,Hellion,Orbital Command,Hellion
+,Hellion,Orbital Command,SupplyDepot,Raven
+,Hellion,Hellion,BarracksTechLab,Refinery
+,SupplyDepot"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,Widow Mine,SupplyDepot,FactoryTechLab
+,Medivac,Cyclone,Orbital Command,Refinery
+,StarportTechLab,SupplyDepot"
+	7 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,SupplyDepot,Starport,Widow Mine,FactoryTechLab
+,Refinery,Medivac,Orbital Command,Cyclone
+,SupplyDepot,StarportTechLab,SupplyDepot"
+	9 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksTechLab
+,SupplyDepot,Starport,Cyclone,BarracksTechLab
+,Cyclone,Banshee,Refinery,BarracksReactor
+,Orbital Command,Siege Tank,SupplyDepot"
+	8 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,BarracksReactor,CommandCenter,Hellion,Reaper
+,Reaper,SupplyDepot,Hellion,Starport
+,Reaper,Reaper,Hellion,Refinery
+,FactoryTechLab,Orbital Command,StarportTechLab,Cyclone
+"
+	2 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,FactoryTechLab,Cyclone
+,StarportTechLab,Refinery,Orbital Command,Raven
+,Siege Tank,SupplyDepot"
+	2 -> "SupplyDepot,Barracks,Refinery,Refinery
+,Reaper,Orbital Command,SupplyDepot,Factory
+,Reaper,CommandCenter,Hellion,BarracksReactor
+,Starport,SupplyDepot,FactoryTechLab,Cyclone
+,StarportTechLab,Refinery,Orbital Command,Raven
+,SupplyDepot,Siege Tank"
+}

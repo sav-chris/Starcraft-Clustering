@@ -1,0 +1,178 @@
+digraph Dendrogram {
+	6 -> "Extractor,Overlord,SpawningPool,Extractor
+,Hatchery,Queen,Metabolic Boost,Overlord
+,Extractor,Queen,Overlord,RoachWarren
+,Extractor,Overlord,Roach,Roach
+,Roach,Roach,Roach,Roach
+,Roach,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Metabolic Boost,Overlord
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,Baneling,Baneling,Overlord
+,Extractor"
+	5 -> "SpawningPool,Overlord,Hatchery,Queen
+,Overlord,Queen,Queen,SpineCrawler
+,Queen,Overlord,Extractor,Extractor
+,EvolutionChamber,EvolutionChamber,EvolutionChamber,EvolutionChamber
+"
+	0 -> "SpawningPool,Overlord,SpineCrawler,SpineCrawler
+,SpineCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,SpineCrawler
+"
+	1 -> "Overlord,Hatchery,SpawningPool,Extractor
+,Queen,Queen,SpineCrawler,SpineCrawler
+"
+	0 -> "Extractor,SpawningPool,Overlord,Metabolic Boost
+,BanelingNest,Queen,Overlord,Baneling
+"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,Baneling,Baneling,RoachWarren
+"
+	6 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Overlord,RoachWarren,Overlord
+,Queen,Roach,Roach,Roach
+,Roach,Roach,Roach,Roach
+,Overlord"
+	0 -> "Extractor,SpawningPool,Overlord,Extractor
+,Metabolic Boost,Queen,Overlord,Hatchery
+,Queen,BanelingNest,Overlord,Baneling
+,Baneling,Baneling,Baneling,Baneling
+,Baneling"
+	5 -> "SpawningPool,Overlord,Hatchery,Queen
+,Overlord,Queen,Queen,Queen
+,Overlord,Extractor,Extractor,EvolutionChamber
+,RoachWarren,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,Baneling,Baneling,Baneling
+,Baneling"
+	0 -> "Extractor,SpawningPool,Overlord,Metabolic Boost
+,BanelingNest,Queen,Overlord,Baneling
+,Baneling,Baneling,Baneling,Baneling
+,Baneling"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,BanelingNest
+,SpineCrawler,Baneling,Baneling"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Extractor,Lair
+,RoachWarren,Zerg Missile Weapons Level 1"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,EvolutionChamber
+,Queen,Overlord,Zerg Melee Weapons Level 1,Overlord
+,Extractor"
+	6 -> "Overlord,Extractor,SpawningPool,Hatchery
+,Queen,Metabolic Boost,Overlord,Queen
+,RoachWarren,Overlord,Overlord,Overlord
+,Roach,Roach,Roach,Roach
+,Roach,Roach,Roach,Roach
+"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,EvolutionChamber,Overlord,Baneling,Baneling
+,Baneling,RoachWarren"
+	5 -> "SpawningPool,Overlord,Hatchery,Queen
+,Overlord,Queen,Queen,Queen
+,Overlord,Overlord,Extractor,Extractor
+,RoachWarren,EvolutionChamber"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Metabolic Boost,Overlord
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,Baneling,Baneling,Baneling
+,Baneling"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Baneling,Extractor
+,Zerg Missile Weapons Level 1,RoachWarren"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Extractor,Overlord
+,Zerg Missile Weapons Level 1,RoachWarren"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen"
+	0 -> "SpawningPool,Overlord,SpineCrawler,SpineCrawler
+,SpineCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,SpineCrawler,Queen,Queen,Overlord
+"
+	0 -> "SpawningPool,Overlord,Hatchery,SpineCrawler
+,Hatchery,Queen,Overlord,Queen
+"
+	5 -> "SpawningPool,Overlord,Hatchery,Queen
+,Overlord,Queen,Queen,Extractor
+,Overlord,EvolutionChamber,RoachWarren,EvolutionChamber
+,Metabolic Boost,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,Overlord,Baneling,Baneling
+"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,EvolutionChamber,Overlord,Baneling,Baneling
+,Baneling,Baneling"
+	0 -> "SpawningPool,Overlord,SpineCrawler,SpineCrawler
+,SpineCrawler,SpineCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,EvolutionChamber,Baneling,Baneling
+,RoachWarren,Baneling"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,Queen,BanelingNest,Overlord
+,Overlord,EvolutionChamber,Baneling,Lair
+,RoachWarren"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,EvolutionChamber,Overlord,Overlord,Zerg Ground Armor Level 1
+"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,EvolutionChamber
+,Queen,Overlord,Overlord,Zerg Missile Weapons Level 1
+,RoachWarren"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,RoachWarren,Overlord
+,Zerg Missile Weapons Level 1"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen"
+	0 -> "SpawningPool,Overlord,SpineCrawler,SpineCrawler
+,SpineCrawler"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Extractor,Lair
+,Zerg Missile Weapons Level 1,RoachWarren"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,EvolutionChamber
+,Queen,Overlord,Overlord,Baneling
+"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Lair,Extractor
+,Zerg Missile Weapons Level 1"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Queen,Queen,Overlord,Metabolic Boost
+,Hatchery,BanelingNest,Overlord,Queen
+,Overlord,EvolutionChamber,Baneling,Extractor
+,RoachWarren,Zerg Missile Weapons Level 1"
+}

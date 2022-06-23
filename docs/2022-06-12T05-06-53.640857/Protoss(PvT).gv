@@ -1,0 +1,232 @@
+digraph Dendrogram {
+	0 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,Adept,Stargate,Warp Gate,Adept
+,Phoenix,Pylon,Phoenix,Phoenix
+,Pylon"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Phoenix,Gateway
+,Pylon,Phoenix"
+	4 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,Warp Gate,TwilightCouncil,Stalker,Stalker
+,Blink,Gateway,Gateway,Pylon
+,Stalker"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Gateway,Gateway
+,Oracle,Pylon"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,Gateway
+,Oracle,Pylon,Nexus"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Gateway,Oracle
+,Gateway,Pylon"
+	5 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,Warp Gate,Stalker,TwilightCouncil,Stalker
+,Blink,Gateway,RoboticsFacility,Pylon
+,Assimilator,Assimilator,Stalker,Pylon
+"
+	6 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,Stalker,TwilightCouncil,Stalker
+,Gateway,Blink,RoboticsFacility,Pylon
+,Stalker,Stalker,Pylon"
+	5 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Blink
+,Gateway,Stalker,RoboticsFacility,Pylon
+,ShieldBattery,Stalker"
+	4 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,ShieldBattery,Stalker
+,Stalker,Blink,Gateway,RoboticsFacility
+,Pylon,Stalker"
+	5 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Blink
+,Gateway,Stalker,ShieldBattery,RoboticsFacility
+,Pylon,Pylon,Stalker"
+	0 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Stalker,Assimilator
+,Adept,Stargate,Warp Gate,Adept
+,Pylon,Phoenix,Gateway,Phoenix
+,Phoenix"
+	4 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,Adept,TwilightCouncil,Adept
+,Stalker,Blink,Gateway,RoboticsFacility
+,Pylon,Stalker"
+	2 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Warp Gate,Adept,Phoenix
+,Pylon,RoboticsFacility,Adept,Phoenix
+,Pylon,Phoenix,Nexus"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Gateway,Gateway,Nexus
+,Pylon"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,Pylon
+,Oracle,Gateway,Gateway"
+	2 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,ShieldBattery,Stargate,Adept,Warp Gate
+,Adept,Phoenix,Pylon,Adept
+,Phoenix,Pylon,Phoenix,Pylon
+"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,Oracle
+,Gateway,Pylon"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Stalker,Warp Gate,Oracle
+,Pylon,TwilightCouncil,Gateway,Gateway
+,Blink,Pylon"
+	3 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,ShieldBattery,Adept,Stargate,Adept
+,Warp Gate,Oracle,Pylon,Oracle
+"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,TwilightCouncil,Gateway
+,Gateway,Void Ray,ShieldBattery"
+	6 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Gateway
+,Blink,RoboticsFacility,Pylon,ShieldBattery
+,Pylon,Stalker,Stalker,Assimilator
+"
+	7 -> "Pylon,Gateway,Assimilator,Assimilator
+,Pylon,CyberneticsCore,Zealot,Stalker
+,Warp Gate,Pylon,Nexus,Sentry
+,TwilightCouncil,Gateway,Phoenix,RoboticsFacility
+,Blink,Stalker,Stalker,ShieldBattery
+"
+	7 -> "Pylon,Gateway,Assimilator,Assimilator
+,Pylon,Zealot,CyberneticsCore,Pylon
+,Stalker,Warp Gate,Nexus,Stalker
+,TwilightCouncil,Gateway,RoboticsFacility,Blink
+,Stalker,Stalker,Observer"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,ShieldBattery,Warp Gate
+,Adept,Oracle,ShieldBattery,Phoenix
+,Pylon,Pylon,RoboticsFacility"
+	5 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Blink
+,Gateway,RoboticsFacility,Pylon,Assimilator
+,Assimilator,Stalker"
+	7 -> "Pylon,Gateway,Assimilator,Assimilator
+,Pylon,CyberneticsCore,Zealot,Stalker
+,Warp Gate,Nexus,Pylon,Stalker
+,TwilightCouncil,Gateway,ShieldBattery,Blink
+,RoboticsFacility,Stalker,Pylon,Stalker
+"
+	0 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Adept,Stargate,Warp Gate,Adept
+,Oracle,Pylon,Phoenix,Gateway
+,Assimilator,Pylon,Phoenix"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Warp Gate,Adept,Oracle
+,Adept,Pylon,TwilightCouncil,Gateway
+,Gateway,Assimilator,Pylon,Blink
+"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,TwilightCouncil,Gateway
+,Gateway,Assimilator,Blink"
+	3 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,ShieldBattery,Adept,Stargate,Warp Gate
+,Adept,Adept,Oracle,Pylon
+,Oracle,Pylon"
+	3 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,ShieldBattery,Adept,Stargate,Adept
+,Warp Gate,Adept,Oracle,Oracle
+"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Assimilator
+,Adept,Oracle,Pylon,Gateway
+,Gateway,Phoenix,Nexus"
+	2 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,ShieldBattery,Stargate,Adept,Adept
+,Phoenix,Pylon,Adept,Phoenix
+,ShieldBattery,Phoenix,Adept"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,RoboticsFacility
+,Gateway,Assimilator,Assimilator"
+	1 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,Gateway
+,Phoenix,Pylon,Assimilator,Assimilator
+"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,ShieldBattery
+,Adept,Oracle,Pylon,TwilightCouncil
+,Gateway,Gateway,Pylon"
+	0 -> "Pylon,Gateway,Assimilator,Nexus
+,CyberneticsCore,Assimilator,Pylon,Adept
+,Stargate,Adept,Warp Gate,Adept
+,Oracle,Pylon,Adept,Gateway
+,Phoenix,Assimilator,Assimilator,Pylon
+,RoboticsFacility"
+	4 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,Adept,TwilightCouncil,Adept
+,Stalker,Blink,RoboticsFacility,Stalker
+"
+	6 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Stalker
+,Warp Gate,Stalker,TwilightCouncil,Stalker
+,Gateway,Blink,Pylon,RoboticsFacility
+,Pylon,Stalker,Stalker,Gateway
+"
+	4 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,Stalker,TwilightCouncil,ShieldBattery
+,Stalker,Blink,Gateway,RoboticsFacility
+,Pylon,Stalker,Nexus"
+	6 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Gateway
+,Blink,Stalker,RoboticsFacility,ShieldBattery
+,Pylon,Stalker,Stalker,Pylon
+"
+	3 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,ShieldBattery,Stargate,Adept,Warp Gate
+,Phoenix,Adept,Pylon,Gateway
+,Oracle"
+	5 -> "Pylon,Gateway,Assimilator,CyberneticsCore
+,Nexus,Pylon,Assimilator,Adept
+,Warp Gate,TwilightCouncil,Stalker,Gateway
+,Blink,Stalker,ShieldBattery,RoboticsFacility
+,Pylon,Pylon,Stalker"
+}

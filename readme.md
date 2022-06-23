@@ -41,8 +41,8 @@ Check out the repo
 git clone https://github.com/sav-chris/Starcraft-Clustering.git
 ```
 
-setup.bat is the script that creates a virtual environment and installs the dependencies.
-On windows you can run this, if you are on linux run setup.sh
+`setup.bat` is the script that creates a virtual environment and installs the dependencies.
+On windows you can run this, if you are on linux run `setup.sh`
 
 If you have already run this, you just need to activate the virtual environment
 
@@ -60,7 +60,7 @@ source venv/bin/activate
 
 You will need to get some replay files such as the ones available on [spawning tool](https://lotv.spawningtool.com/replaypacks/)
 
-Unzip them into the Data folder. They may be in subfolders as all subfolders will be searched.
+Unzip them into the `Data` folder. They may be in subfolders as all subfolders will be searched.
 
 To run the whole thing:
 
@@ -87,4 +87,9 @@ Each test file is run individually, ie:
 python ClusteringController.test.py
 ```
 
+# Dendrograms 
+
+The program output is stored in the `Dendrongrams` folder.
+
+Each run is stored in a new subfolder and the `Hyperparameters.json` file stores the selected hyperparameters used for that run.
 

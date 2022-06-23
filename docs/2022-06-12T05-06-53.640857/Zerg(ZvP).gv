@@ -1,0 +1,219 @@
+digraph Dendrogram {
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,SporeCrawler,Queen
+,SporeCrawler,Queen"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,SporeCrawler,Queen,Overlord
+,Overlord,EvolutionChamber,SporeCrawler,SporeCrawler
+"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Overlord,Hatchery,Queen
+,Overlord,SporeCrawler,Queen,Overlord
+"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Overlord,Queen
+,Queen,Metabolic Boost,Overlord,Queen
+,Overlord,SporeCrawler,Overlord"
+	4 -> "Overlord,Hatchery,SpawningPool,Extractor
+,Hatchery,Queen,Overlord,Queen
+,Queen,Metabolic Boost,Queen,Overlord
+,SporeCrawler,Queen,Overlord,SporeCrawler
+"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Overlord,Hatchery,Queen
+,Overlord,Overlord,Queen,SporeCrawler
+"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,SporeCrawler,SporeCrawler,Overlord
+,Queen"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Overlord,Queen,Queen,SporeCrawler
+"
+	6 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Overlord"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,SporeCrawler,EvolutionChamber
+,Queen,SporeCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,Overlord,Queen,Overlord
+,SporeCrawler,SporeCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,Overlord,Queen,Overlord
+,SporeCrawler,Overlord,SporeCrawler,Queen
+"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,Overlord,Queen,Overlord
+,SporeCrawler,Queen"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,Overlord,Queen,Overlord
+,Overlord,SporeCrawler,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Queen,Overlord,Overlord
+,Overlord,Overlord"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,SporeCrawler,Queen
+,Queen"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,SporeCrawler,EvolutionChamber
+,Queen,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Queen,Overlord,Queen,RoachWarren
+,Queen,Overlord"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,Queen,Queen
+,Queen,Overlord,SporeCrawler"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,Queen,Overlord
+,Queen,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,Queen,Overlord
+,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,RoachWarren,Queen
+,Queen,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,Queen,SporeCrawler
+,Queen"
+	4 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Overlord,Queen
+,Queen,Metabolic Boost,Queen,Overlord
+,SporeCrawler,Queen,Overlord,Overlord
+"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Overlord,Hatchery,Queen
+,Overlord,SporeCrawler,Queen,SporeCrawler
+,Overlord"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Hatchery,Overlord,Overlord
+,Queen,Overlord,Queen,Overlord
+,SporeCrawler,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,SporeCrawler,Overlord,Overlord,Queen
+,Queen"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Overlord,Hatchery,Queen
+,Overlord,Overlord,Queen,SporeCrawler
+,RoachWarren,Overlord"
+	3 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Queen,Overlord,Hatchery,Queen
+,Overlord,Overlord,Overlord,Queen
+,SporeCrawler,Overlord"
+	5 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Metabolic Boost,Overlord
+,Queen,Queen,Queen,Overlord
+,Overlord,Overlord,Queen,Overlord
+,SporeCrawler,SporeCrawler,Overlord"
+	5 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Metabolic Boost,Overlord
+,Queen,Queen,Queen,Overlord
+,Overlord,Overlord,Queen,SporeCrawler
+,SporeCrawler"
+	6 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Extractor,Queen,Queen,Metabolic Boost
+,Overlord,Overlord,Hatchery"
+	6 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Overlord,Overlord
+"
+	5 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Metabolic Boost,Overlord
+,Queen,Queen,Queen,Overlord
+,Overlord,Queen,SporeCrawler,SporeCrawler
+,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,SporeCrawler,Queen
+,Queen,SporeCrawler,Overlord"
+	5 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Hatchery,Queen,Metabolic Boost,Overlord
+,Queen,Queen,Queen,Overlord
+,Overlord,Overlord,Queen,SporeCrawler
+,SporeCrawler"
+	1 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Overlord
+,Queen,Overlord,Queen,Overlord
+,SporeCrawler,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Overlord
+,Overlord,Queen,Queen,Overlord
+"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,Queen,Overlord
+,Queen,SporeCrawler,SporeCrawler,Overlord
+"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,Queen,SporeCrawler
+,Queen,Overlord"
+	2 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Overlord,Queen,Queen
+,Overlord,Overlord,Queen,Overlord
+,SporeCrawler,Queen"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,Queen,Queen
+,Queen,SporeCrawler"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,Queen,Queen
+,RoachWarren"
+	0 -> "Overlord,Hatchery,Extractor,SpawningPool
+,Overlord,Queen,Queen,Metabolic Boost
+,Hatchery,Queen,Overlord,Queen
+,Overlord,Overlord,Overlord,Overlord
+,Queen,RoachWarren"
+}
