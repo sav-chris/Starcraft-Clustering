@@ -91,5 +91,11 @@ python ClusteringController.test.py
 
 The program output is stored in the `Dendrongrams` folder.
 
-Each run is stored in a new subfolder and the `Hyperparameters.json` file stores the selected hyperparameters used for that run.
+Each run is stored in a new subfolder and the `Hyperparameters.json` file records the selected hyperparameters used for that run.
+
+The files `Race.Protoss.Uncategorised.txt`,  `Race.Terran.Uncategorised.txt` and `Race.Zerg.Uncategorised.txt` record the number of build orders that were not assigned to a cluster for their respective races.   
+
+The dendrogram images will be stored in svg files and look like this:
+
+![Example Dendrogram](docs/example%20dendrogram.png)
 
