@@ -1,5 +1,5 @@
 python -m venv venv
-.\venv\Scripts\activate
+source venv/bin/activate
 
 python -m venv --upgrade venv
 python -m ensurepip --upgrade
