@@ -85,6 +85,9 @@ cd test
 Each test file is run individually, ie:
 ```bash
 python ClusteringController.test.py
+python LabelEncoder.test.py
+python Player.test.py
+python RaceBuildOrder.test.py
 ```
 
 # Dendrograms 
@@ -95,7 +98,7 @@ Each run is stored in a new subfolder and the `Hyperparameters.json` file record
 
 The files `Race.Protoss.Uncategorised.txt`,  `Race.Terran.Uncategorised.txt` and `Race.Zerg.Uncategorised.txt` record the number of build orders that were not assigned to a cluster for their respective races.   
 
-The dendrogram images will be stored in svg files and look like this:
+The dendrogram images will be stored in [svg](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) files and look like this:
 
 ![Example Dendrogram](docs/example%20dendrogram.png)
 
