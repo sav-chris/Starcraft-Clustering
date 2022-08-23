@@ -28,7 +28,7 @@ https://lotv.spawningtool.com/replaypacks/
 This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering
 
 
-Since starraft build orders are not numbers, [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance ise used as a distance metric, to measure the distance between two build orders. 
+Since Starcraft build orders are not numbers, [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance is used as a distance metric, to measure the distance between two build orders. 
 
 
 # Running it
