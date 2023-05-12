@@ -23,8 +23,11 @@ if clustering_controller.count_npy_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
     clustering_controller.compute_levenshtein_matrices(True)
     clustering_controller.save_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
 else:
-    print('Precomputed Levenshtein Matricies Loading ...')
+    print('Loading Precomputed Levenshtein Matricies ...')
     clustering_controller.load_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
+
+print('Compute Histograms ...')
+clustering_controller.draw_histograms()
 
 print('Clustering ...')
 clustering_controller.optics_clustering()

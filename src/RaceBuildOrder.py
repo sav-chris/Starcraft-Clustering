@@ -15,6 +15,7 @@ import json
 from dendrogram import Dendrogram
 from Hyperparameters import Hyperparameters
 import collections
+import Histogram as hist
 
 class RaceBuildOrder:
 
@@ -233,7 +234,49 @@ class RaceBuildOrder:
         uncategorised_filepath: str = os.path.join(folder,  f'{self.Race}.{Constants.UNCATEGORISED_FILE}')
         self.save_uncategorised(uncategorised_filepath)
 
+    def plot_hist(self, filename, title, build_order):  
+        i: int = 0
+        for build_order in build_order:
+            i +=1
+            hist.plot_histogram(filename.format(i), title, self.Label_Encoder, build_order)
+            
 
+    def draw_histograms(self, folder):
         
+        titleT:str = ""
+        titleZ:str = ""
+        titleP:str = ""
+        match self.Race:
+            case Race.Terran:
+                filename_vT = Constants.TERRAN_VT_HIST
+                filename_vZ = Constants.TERRAN_VZ_HIST
+                filename_vP = Constants.TERRAN_VP_HIST
+                titleT = "TvT"
+                titleZ = "TvZ"
+                titleP = "TvP"
+            case Race.Zerg:
+                filename_vT = Constants.ZERG_VT_HIST
+                filename_vZ = Constants.ZERG_VZ_HIST
+                filename_vP = Constants.ZERG_VP_HIST
+                titleT = "ZvT"
+                titleZ = "ZvZ"
+                titleP = "ZvP"
+            case Race.Protoss:
+                filename_vT = Constants.PROTOSS_VT_HIST
+                filename_vZ = Constants.PROTOSS_VZ_HIST
+                filename_vP = Constants.PROTOSS_VP_HIST
+                titleT = "PvT"
+                titleZ = "PvZ"
+                titleP = "PvP"
+ 
+        filename_vT = os.path.join(folder, filename_vT)
+        filename_vZ = os.path.join(folder, filename_vZ)
+        filename_vP = os.path.join(folder, filename_vP)
         
+        self.plot_hist(filename_vT, titleT, self.VersusTerran)
+        self.plot_hist(filename_vZ, titleZ, self.VersusZerg)
+        self.plot_hist(filename_vP, titleP, self.VersusProtoss)
+
+        uncategorised_filepath: str = os.path.join(folder,  f'{self.Race}.{Constants.UNCATEGORISED_FILE}')
+
 

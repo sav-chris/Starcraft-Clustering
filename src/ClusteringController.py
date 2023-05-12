@@ -91,6 +91,12 @@ class ClusteringController:
         filepattern: str = os.path.join(directory, Constants.LEVENSHTEIN_DIR_FILTER)
         data_files: List[str] = glob.glob(filepattern,  recursive=True)
         return len(data_files)
+    
+
+    def count_files_in_dir(self, directory: str, pattern: str)->int:
+        filepattern: str = os.path.join(directory, pattern)
+        data_files: List[str] = glob.glob(filepattern,  recursive=True)
+        return len(data_files)
 
 
     def optics_clustering(self):
@@ -107,15 +113,16 @@ class ClusteringController:
             dot_command:str = 'dot -T svg "{}" -O'.format(file)
             os.system(dot_command)
 
-    def make_dendrograms_folder(self, root_dir)->str:
+    def make_timestamp_folder(self, root_dir:str)->str:
         timestamp:str = datetime.today().isoformat()
         timestamp = timestamp.replace(":", "-") 
         timestamp_folder: str = os.path.join(root_dir, timestamp)
         os.makedirs(timestamp_folder, exist_ok=True)
         return timestamp_folder
 
+
     def draw_dendrograms(self):
-        timestamp_folder:str = self.make_dendrograms_folder(Constants.DENDROGRAMS_DIR)        
+        timestamp_folder:str = self.make_timestamp_folder(Constants.DENDROGRAMS_DIR) 
         
         self.TerranBuildOrders.draw_clustering(timestamp_folder)
         self.ZergBuildOrders.draw_clustering(timestamp_folder)
@@ -123,6 +130,26 @@ class ClusteringController:
         self.generate_svg(timestamp_folder)
 
         self.save_hyperparameters(os.path.join(timestamp_folder, Constants.HyperparametersFilename))
+
+
+    def draw_histograms(self):
+        timestamp_folder:str = self.make_timestamp_folder(Constants.HIST_DIR)
+
+        self.TerranBuildOrders.draw_histograms(timestamp_folder)
+        self.ZergBuildOrders.draw_histograms(timestamp_folder)
+        self.ProtossBuildOrders.draw_histograms(timestamp_folder)
+
+        self.save_hyperparameters(os.path.join(timestamp_folder, Constants.HyperparametersFilename))
+
+        
+
+
+
+
+
+
+
+        
 
         
         

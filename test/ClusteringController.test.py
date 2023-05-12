@@ -26,7 +26,7 @@ class TestClusteringController(unittest.TestCase):
 
     def test_make_dendrograms_folder(self):
         controller: ClusteringController = ClusteringController()
-        folder: str = controller.make_dendrograms_folder(TestConstants.TEST_DATA_DENDROGRAMS_DIR)
+        folder: str = controller.make_timestamp_folder(TestConstants.TEST_DATA_DENDROGRAMS_DIR)
 
         self.assertTrue(os.path.exists(folder))
         os.rmdir(folder)
