@@ -42,3 +42,6 @@ def plot_histogram(filename:str, title:str, label_encoder: LabelEncoder, build_o
     plt.savefig(filename)
     plt.close('all')
 
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.jensenshannon.html
+# https://github.com/LucaCappelletti94/dictances
+# https://en.wikipedia.org/wiki/Total_variation_distance_of_probability_measures
