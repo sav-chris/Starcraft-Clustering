@@ -72,20 +72,20 @@ class ClusteringController:
         self.ZergBuildOrders.load_build_orders(directory)
         self.ProtossBuildOrders.load_build_orders(directory)
 
-    def compute_levenshtein_matrices(self, verbose:bool = False)->None:
-        self.TerranBuildOrders.compute_levenshtein_matrices(verbose)
-        self.ZergBuildOrders.compute_levenshtein_matrices(verbose)
-        self.ProtossBuildOrders.compute_levenshtein_matrices(verbose)
+    def compute_distance_matrices(self, verbose:bool = False, distance_metric: Constants.DistanceMetric = Hyperparameters.distance_metric)->None:
+        self.TerranBuildOrders.compute_distance_matrices(verbose, distance_metric)
+        self.ZergBuildOrders.compute_distance_matrices(verbose, distance_metric)
+        self.ProtossBuildOrders.compute_distance_matrices(verbose, distance_metric)
 
-    def save_levenshtein_matricies(self, directory: str)->None:
-        self.TerranBuildOrders.save_levenshtein_matricies(directory)
-        self.ZergBuildOrders.save_levenshtein_matricies(directory)
-        self.ProtossBuildOrders.save_levenshtein_matricies(directory)
+    def save_distance_matricies(self, directory: str)->None:
+        self.TerranBuildOrders.save_distance_matricies(directory)
+        self.ZergBuildOrders.save_distance_matricies(directory)
+        self.ProtossBuildOrders.save_distance_matricies(directory)
 
-    def load_levenshtein_matricies(self, directory: str)->None:
-        self.TerranBuildOrders.load_levenshtein_matricies(directory)
-        self.ZergBuildOrders.load_levenshtein_matricies(directory)
-        self.ProtossBuildOrders.load_levenshtein_matricies(directory)
+    def load_distance_matricies(self, directory: str)->None:
+        self.TerranBuildOrders.load_distance_matricies(directory)
+        self.ZergBuildOrders.load_distance_matricies(directory)
+        self.ProtossBuildOrders.load_distance_matricies(directory)
 
     def count_npy_files_in_dir(self, directory: str)->int:
         filepattern: str = os.path.join(directory, Constants.LEVENSHTEIN_DIR_FILTER)

@@ -1,14 +1,21 @@
 from enum import Enum
+from enum import IntEnum
 from typing import List
 from typing import Type
 from rapidfuzz.distance import Levenshtein
 import os
 import numpy.typing as npt
 
+
 class Race(Enum):
     Terran = 1
     Zerg = 2
     Protoss = 3
+
+class DistanceMetric(IntEnum):
+    Levenshtien = 1
+    Histogram_Jensen_Shannon = 2
+    Histogram_Kullback_Leibler = 3
 
 class GameTime:
     def __init__(self, minutes: int, seconds:int):
@@ -87,8 +94,3 @@ LabelEncoderZerg: str = 'LabelEncoderZerg.npy'
 LabelEncoderProtoss: str = 'LabelEncoderProtoss.npy'
 
 HyperparametersFilename: str = 'Hyperparameters.json'
-
-def levenshtein_distance_metric(left: BUILD_ORDER_CHR, right: BUILD_ORDER_CHR)->int:
-    return Levenshtein.distance(left, right)
-
-

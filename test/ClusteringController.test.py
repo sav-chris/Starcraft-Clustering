@@ -18,7 +18,7 @@ class TestClusteringController(unittest.TestCase):
     def test_clustering(self):
         controller: ClusteringController = ClusteringController()
         controller.load_build_orders(TestConstants.TEST_BUILD_ORDER_EXAMPLE_DIR)
-        controller.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR )
+        controller.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR )
 
         clustering_TvT, clustering_TvZ, clustering_TvP = controller.TerranBuildOrders.OPTICS_clustering(controller.Hyperparameters)
         

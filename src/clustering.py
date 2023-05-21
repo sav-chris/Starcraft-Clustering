@@ -6,7 +6,12 @@ from ClusteringController import ClusteringController
 import Constants
 import Hyperparameters
 
-hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters(Constants.CUTOFF_TIME, Constants.CLUST_PARAMS, True)
+hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters(
+    Constants.CUTOFF_TIME, 
+    Constants.CLUST_PARAMS, 
+    filter_cheap_units=True,
+    distance_metric=Constants.DistanceMetric.Histogram_Jensen_Shannon
+    )
 clustering_controller: ClusteringController = ClusteringController(hyperparameters)
 
 if clustering_controller.count_npy_files_in_dir(Constants.BUILD_ORDER_DIR) == 0:
@@ -18,21 +23,22 @@ else:
     clustering_controller.load_build_orders(Constants.BUILD_ORDER_DIR)
 
 if clustering_controller.count_npy_files_in_dir(Constants.LEVENSHTEIN_DIR) == 0:
-    print('Computing Levenshtein Matricies ... ')
+    print('Computing Distance Matricies ... ')
     
-    clustering_controller.compute_levenshtein_matrices(True)
-    clustering_controller.save_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
+    clustering_controller.compute_distance_matrices(verbose=True, distance_metric=hyperparameters.distance_metric)
+    clustering_controller.save_distance_matricies(Constants.LEVENSHTEIN_DIR)
 else:
-    print('Loading Precomputed Levenshtein Matricies ...')
-    clustering_controller.load_levenshtein_matricies(Constants.LEVENSHTEIN_DIR)
+    print('Loading Precomputed Distance Matricies ...')
+    clustering_controller.load_distance_matricies(Constants.LEVENSHTEIN_DIR)
 
 print('Compute Histograms ...')
 clustering_controller.draw_histograms()
 
-print('Clustering ...')
+print('OPTICS Clustering ...')
 clustering_controller.optics_clustering()
 clustering_controller.draw_dendrograms()
 
+print('Histogram Clustering')
 
 
 # TO DO: decide how to compute eps=???, min_samples=???

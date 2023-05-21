@@ -1,5 +1,6 @@
 from typing import List
 from typing import Type
+from typing import Callable
 import numpy as np
 import numpy.typing as npt
 from numpy import array
@@ -7,7 +8,8 @@ from LabelEncoder import LabelEncoder
 from Constants import BUILD_ORDER
 from Constants import BUILD_ORDER_STR
 from Constants import Race
-from Constants import levenshtein_distance_metric
+from Constants import DistanceMetric
+import distance_metrics
 import Constants 
 import os
 from sklearn.cluster import OPTICS
@@ -26,9 +28,9 @@ class RaceBuildOrder:
 
         self.Label_Encoder: LabelEncoder = LabelEncoder()
 
-        self.TerranLevenshteinMatrix: np.array = np.zeros(0)
-        self.ZergLevenshteinMatrix: np.array = np.zeros(0)
-        self.ProtossLevenshteinMatrix: np.array = np.zeros(0)
+        self.TerranDistanceMatrix: np.array = np.zeros(0)
+        self.ZergDistanceMatrix: np.array = np.zeros(0)
+        self.ProtossDistanceMatrix: np.array = np.zeros(0)
         
         self.Race = Race
 
@@ -70,37 +72,53 @@ class RaceBuildOrder:
         self.add_build_order(bo, self.VersusProtoss)
 
 
-    def compute_levenshtein_matrix(self, levenshtein_matrix: np.array, build_orders : Type[List[BUILD_ORDER]]):
+    def compute_distance_matrix(
+            self, 
+            distance_matrix: np.array, 
+            build_orders : Type[List[BUILD_ORDER]], 
+            distance_metric: DistanceMetric = Hyperparameters.distance_metric
+        ):
         length = len(build_orders)
+
+        distance: distance_metrics.DistMetric = distance_metrics.levenshtein_distance_metric
+        match distance_metric:
+            case DistanceMetric.Levenshtien:
+                distance = distance_metrics.levenshtein_distance_metric
+            case DistanceMetric.Histogram_Jensen_Shannon:
+                distance = distance_metrics.create_histogram_jensen_shannon_distance_metric(self.Label_Encoder)
+            case DistanceMetric.Histogram_Kullback_Leibler:
+                distance = distance_metrics.levenshtein_distance_metric
+            case _:
+                distance = distance_metrics.levenshtein_distance_metric
+
         # Populate Upper triangular and mirror on lower triangular, diagonal stays zero
         for i in range(0, length):
             for j in range(i+1, length):
-                left = [chr(letter) for letter in build_orders[i]] 
-                right = [chr(letter) for letter in build_orders[j]]
-                levenshtein_matrix[i,j] = levenshtein_distance_metric(left, right)
-                levenshtein_matrix[j,i] = levenshtein_matrix[i,j]
+                distance_matrix[i,j] = distance(build_orders[i], build_orders[j])
+                distance_matrix[j,i] = distance_matrix[i,j]
 
-    def compute_levenshtein_matrices(self, verbose:bool = False)->None:
+    def compute_distance_matrices(self, verbose:bool = False, distance_metric: Constants.DistanceMetric = Hyperparameters.distance_metric)->None:
 
         tLength = len(self.VersusTerran)
         zLength = len(self.VersusZerg)
         pLength = len(self.VersusProtoss)
-        self.TerranLevenshteinMatrix  = np.zeros((tLength, tLength)) 
-        self.ZergLevenshteinMatrix    = np.zeros((zLength, zLength)) 
-        self.ProtossLevenshteinMatrix = np.zeros((pLength, pLength)) 
+        self.TerranDistanceMatrix  = np.zeros((tLength, tLength)) 
+        self.ZergDistanceMatrix    = np.zeros((zLength, zLength)) 
+        self.ProtossDistanceMatrix = np.zeros((pLength, pLength)) 
 
-        self.compute_levenshtein_matrix(self.TerranLevenshteinMatrix,  self.VersusTerran)
-        self.compute_levenshtein_matrix(self.ZergLevenshteinMatrix,    self.VersusZerg)
-        self.compute_levenshtein_matrix(self.ProtossLevenshteinMatrix, self.VersusProtoss)
+        self.compute_distance_matrix(self.TerranDistanceMatrix,  self.VersusTerran,  distance_metric)
+        self.compute_distance_matrix(self.ZergDistanceMatrix,    self.VersusZerg,    distance_metric)
+        self.compute_distance_matrix(self.ProtossDistanceMatrix, self.VersusProtoss, distance_metric)
 
         if verbose:
             print(self.Race)
             print('Versus Terran: ')
-            print(self.TerranLevenshteinMatrix)
+            print(self.TerranDistanceMatrix)
             print('Versus Zerg: ')
-            print(self.ZergLevenshteinMatrix)
+            print(self.ZergDistanceMatrix)
             print('Versus Protoss: ')
-            print(self.ProtossLevenshteinMatrix)
+            print(self.ProtossDistanceMatrix)
+
 
     def decode_labels(self, build_order: BUILD_ORDER)->BUILD_ORDER_STR:
         return self.Label_Encoder.inverse_transform(build_order)
@@ -170,22 +188,22 @@ class RaceBuildOrder:
                 self.Label_Encoder.load_from_file(os.path.join(directory, Constants.LabelEncoderProtoss))
 
 
-    def save_levenshtein_matricies(self, directory: str)->None:
+    def save_distance_matricies(self, directory: str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
-        np.save(VT_NPY, self.TerranLevenshteinMatrix)
-        np.save(VZ_NPY, self.ZergLevenshteinMatrix)
-        np.save(VP_NPY, self.ProtossLevenshteinMatrix)
+        np.save(VT_NPY, self.TerranDistanceMatrix)
+        np.save(VZ_NPY, self.ZergDistanceMatrix)
+        np.save(VP_NPY, self.ProtossDistanceMatrix)
 
-    def load_levenshtein_matricies(self, directory:str)->None:
+    def load_distance_matricies(self, directory:str)->None:
         VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
-        self.TerranLevenshteinMatrix  = np.load( VT_NPY)
-        self.ZergLevenshteinMatrix    = np.load( VZ_NPY)
-        self.ProtossLevenshteinMatrix = np.load( VP_NPY)
+        self.TerranDistanceMatrix  = np.load( VT_NPY)
+        self.ZergDistanceMatrix    = np.load( VZ_NPY)
+        self.ProtossDistanceMatrix = np.load( VP_NPY)
 
     def OPTICS_clustering(self, hyperparameters: Hyperparameters):
-        self.clustering_vT = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.TerranLevenshteinMatrix)
-        self.clustering_vZ = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ZergLevenshteinMatrix)
-        self.clustering_vP = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ProtossLevenshteinMatrix)
+        self.clustering_vT = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.TerranDistanceMatrix)
+        self.clustering_vZ = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ZergDistanceMatrix)
+        self.clustering_vP = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.ProtossDistanceMatrix)
 
         return self.clustering_vT, self.clustering_vZ, self.clustering_vP
 

@@ -58,28 +58,28 @@ class TestRaceBuildOrder(unittest.TestCase):
 
     def test_compute_levenshtein_matrices(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
-
+        
         test_lables1 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Nexus', 'Cybernetics Core', 'Assimilator']
         test_lables2 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Gateway', 'Cybernetics Core', 'Assimilator', 'Pylon']
         test_lables3 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Forge', 'Pylon', 'Probe', 'Photon Cannon', 'Pylon']
-
+        
         race_build_order.add_protoss_build_order(test_lables1)
         race_build_order.add_protoss_build_order(test_lables2)
         race_build_order.add_protoss_build_order(test_lables3)
 
         pLength = len(race_build_order.VersusProtoss)
-        race_build_order.ProtossLevenshteinMatrix = np.zeros((pLength, pLength))
+        race_build_order.ProtossDistanceMatrix = np.zeros((pLength, pLength))
         
-        race_build_order.compute_levenshtein_matrix(race_build_order.ProtossLevenshteinMatrix, race_build_order.VersusProtoss)
+        race_build_order.compute_distance_matrix(race_build_order.ProtossDistanceMatrix, race_build_order.VersusProtoss)
 
         #check symmetry 
-        self.assertTrue(np.allclose(race_build_order.ProtossLevenshteinMatrix, race_build_order.ProtossLevenshteinMatrix.T))
+        self.assertTrue(np.allclose(race_build_order.ProtossDistanceMatrix, race_build_order.ProtossDistanceMatrix.T))
 
         #Check 3 x 3
-        self.assertTrue((race_build_order.ProtossLevenshteinMatrix.shape == np.array([3,3])).all())
+        self.assertTrue((race_build_order.ProtossDistanceMatrix.shape == np.array([3,3])).all())
 
         #Check diagonal is all zeros 
-        self.assertFalse(race_build_order.ProtossLevenshteinMatrix.diagonal().any())
+        self.assertFalse(race_build_order.ProtossDistanceMatrix.diagonal().any())
 
     def test_levenshtein_paths(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
@@ -107,9 +107,9 @@ class TestRaceBuildOrder(unittest.TestCase):
         race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
         race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
 
-        race_build_order_t.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
-        race_build_order_z.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
-        race_build_order_p.load_levenshtein_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        race_build_order_t.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        race_build_order_z.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
+        race_build_order_p.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         
         Terran_vt, Terran_vz, Terran_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
         Zerg_vt, Zerg_vz, Zerg_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
