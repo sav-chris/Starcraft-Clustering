@@ -87,7 +87,7 @@ class RaceBuildOrder:
             case DistanceMetric.Histogram_Jensen_Shannon:
                 distance = distance_metrics.create_histogram_jensen_shannon_distance_metric(self.Label_Encoder)
             case DistanceMetric.Histogram_Kullback_Leibler:
-                distance = distance_metrics.levenshtein_distance_metric
+                distance = distance_metrics.create_histogram_kullback_leibler_distance_metric(self.Label_Encoder)
             case _:
                 distance = distance_metrics.levenshtein_distance_metric
 

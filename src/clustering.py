@@ -9,7 +9,7 @@ import Hyperparameters
 hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters(
     Constants.CUTOFF_TIME, 
     Constants.CLUST_PARAMS, 
-    filter_cheap_units=True,
+    filter_cheap_units=False,
     distance_metric=Constants.DistanceMetric.Histogram_Jensen_Shannon
     )
 clustering_controller: ClusteringController = ClusteringController(hyperparameters)

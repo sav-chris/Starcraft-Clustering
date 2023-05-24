@@ -8,6 +8,7 @@ import numpy as np
 from Constants import BUILD_ORDER
 from typing import Tuple
 from LabelEncoder import LabelEncoder
+from scipy.stats import entropy
 
 DistMetric = Callable[[Type[BUILD_ORDER], Type[BUILD_ORDER]], int]
 
@@ -26,6 +27,14 @@ def create_histogram_jensen_shannon_distance_metric(label_encoder: LabelEncoder)
 
     return dist_metric
 
+
+def create_histogram_kullback_leibler_distance_metric(label_encoder: LabelEncoder)->DistMetric:
+    def dist_metric(left: Type[BUILD_ORDER], right: Type[BUILD_ORDER])->int:
+        left_hist : List[int] = calculate_histogram(label_encoder, left) 
+        right_hist: List[int] = calculate_histogram(label_encoder, right) 
+        return entropy(left_hist, right_hist)
+
+    return dist_metric
 
 def calculate_histogram(label_encoder: LabelEncoder, build_order: Type[BUILD_ORDER])-> List[int]:
     words: List[str] = label_encoder.KnownWords

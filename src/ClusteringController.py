@@ -12,12 +12,14 @@ import Constants
 from dendrogram import Dendrogram
 import numpy as np
 from datetime import datetime
-import Hyperparameters
+from Hyperparameters import Hyperparameters as hyperparams
 import json
 
 class ClusteringController:
+
+    Hyperparameters : hyperparams = hyperparams()
     
-    def __init__(self, hyperparameters: Hyperparameters=Hyperparameters.Hyperparameters()):
+    def __init__(self, hyperparameters: hyperparams=hyperparams()):
         self.TerranBuildOrders : RaceBuildOrder = RaceBuildOrder(Race.Terran)
         self.ZergBuildOrders   : RaceBuildOrder = RaceBuildOrder(Race.Zerg)
         self.ProtossBuildOrders: RaceBuildOrder = RaceBuildOrder(Race.Protoss)

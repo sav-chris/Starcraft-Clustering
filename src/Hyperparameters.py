@@ -3,6 +3,10 @@ from Constants import GameTime, ClusteringParams
 
 
 class Hyperparameters:
+    CutOffTime: GameTime = Constants.CUTOFF_TIME
+    ClusteringParams: ClusteringParams = Constants.CLUST_PARAMS
+    filter_cheap_units = True
+    distance_metric = Constants.DistanceMetric.Levenshtien
     
     def __init__(
             self, 
