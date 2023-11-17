@@ -15,6 +15,8 @@ import glob
 from typing import List
 from typing import Type
 import Hyperparameters
+from typing import Dict
+
 
 class TestRaceBuildOrder(unittest.TestCase):
 
@@ -27,7 +29,8 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order.VersusTerran), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        race_build_order.add_terran_build_order(test_build_order) 
+        #race_build_order.add_terran_build_order(test_build_order) 
+        race_build_order.add_race_build_order(Constants.Race.Terran, test_build_order) 
         self.assertEqual(len(race_build_order.VersusTerran), 1)
 
     def test_add_zerg_build_order(self):
@@ -35,16 +38,18 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order.VersusZerg), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        race_build_order.add_zerg_build_order(test_build_order) 
+        #race_build_order.add_zerg_build_order(test_build_order) 
+        race_build_order.add_race_build_order(Constants.Race.Zerg, test_build_order) 
         self.assertEqual(len(race_build_order.VersusZerg), 1)
 
     def test_add_protoss_build_order(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
 
-        self.assertEqual(len(race_build_order.VersusProtoss), 0)
+        self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss]), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        race_build_order.add_protoss_build_order(test_build_order) 
-        self.assertEqual(len(race_build_order.VersusProtoss), 1)
+        #race_build_order.add_protoss_build_order(test_build_order) 
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_build_order) 
+        self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss]), 1)
     
     def test_build_labels(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
@@ -63,57 +68,61 @@ class TestRaceBuildOrder(unittest.TestCase):
         test_lables2 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Gateway', 'Cybernetics Core', 'Assimilator', 'Pylon']
         test_lables3 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Forge', 'Pylon', 'Probe', 'Photon Cannon', 'Pylon']
         
-        race_build_order.add_protoss_build_order(test_lables1)
-        race_build_order.add_protoss_build_order(test_lables2)
-        race_build_order.add_protoss_build_order(test_lables3)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables1)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables2)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables3)
 
-        pLength = len(race_build_order.VersusProtoss)
-        race_build_order.ProtossDistanceMatrix = np.zeros((pLength, pLength))
+        pLength = len(race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss])
+        race_build_order.RaceDistanceMatrix[Constants.Race.Protoss] = np.zeros((pLength, pLength))
         
-        race_build_order.compute_distance_matrix(race_build_order.ProtossDistanceMatrix, race_build_order.VersusProtoss)
+        race_build_order.compute_distance_matrix(race_build_order.RaceDistanceMatrix[Constants.Race.Protoss], race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss])
 
         #check symmetry 
-        self.assertTrue(np.allclose(race_build_order.ProtossDistanceMatrix, race_build_order.ProtossDistanceMatrix.T))
+        self.assertTrue(np.allclose(race_build_order.RaceDistanceMatrix[Constants.Race.Protoss], race_build_order.RaceDistanceMatrix[Constants.Race.Protoss].T))
 
         #Check 3 x 3
-        self.assertTrue((race_build_order.ProtossDistanceMatrix.shape == np.array([3,3])).all())
+        self.assertTrue((race_build_order.RaceDistanceMatrix[Constants.Race.Protoss].shape == np.array([3,3])).all())
 
         #Check diagonal is all zeros 
-        self.assertFalse(race_build_order.ProtossDistanceMatrix.diagonal().any())
+        self.assertFalse(race_build_order.RaceDistanceMatrix[Constants.Race.Protoss].diagonal().any())
 
     def test_levenshtein_paths(self):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VT ), VT_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VZ ), VZ_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VP ), VP_NPY)
+
+        paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        # VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VT ), paths[Constants.Race.Terran])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VZ ), paths[Constants.Race.Zerg])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.PROTOSS_VP ), paths[Constants.Race.Protoss])
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VT ), VT_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VZ ), VZ_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VP ), VP_NPY)
+        #VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VT ), paths[Constants.Race.Terran])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VZ ), paths[Constants.Race.Zerg])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.ZERG_VP ), paths[Constants.Race.Protoss])
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VT ), VT_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VZ ), VZ_NPY)
-        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VP ), VP_NPY)
+        #VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VT ), paths[Constants.Race.Terran])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VZ ), paths[Constants.Race.Zerg])
+        self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, Constants.TERRAN_VP ), paths[Constants.Race.Protoss])
 
     def test_OPTICS_clustering(self):
         hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters()
 
-        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
-        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
-        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Terran)
+        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Zerg)
+        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Protoss)
 
         race_build_order_t.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         race_build_order_z.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         race_build_order_p.load_distance_matricies(TestConstants.TEST_LEVENSHTEIN_DIR)
         
-        Terran_vt, Terran_vz, Terran_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
-        Zerg_vt, Zerg_vz, Zerg_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
-        Protoss_vt, Protoss_vz, Protoss_vp = race_build_order_t.OPTICS_clustering(hyperparameters)
+        race_build_order_t.OPTICS_clustering(hyperparameters)
+        race_build_order_t.OPTICS_clustering(hyperparameters)
+        race_build_order_t.OPTICS_clustering(hyperparameters)
 
         print('')
 
@@ -128,45 +137,48 @@ class TestRaceBuildOrder(unittest.TestCase):
         for file in build_order_files:
             os.remove(file)
 
-        race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+        race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Protoss)
 
         test_lables1 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Nexus', 'Cybernetics Core', 'Assimilator']
         test_lables2 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Gateway', 'Gateway', 'Cybernetics Core', 'Assimilator', 'Pylon']
         test_lables3 : RaceBuildOrder.BUILD_ORDER_STR = ['Probe', 'Probe', 'Pylon', 'Forge', 'Pylon', 'Probe', 'Photon Cannon', 'Pylon']
 
-        race_build_order.add_protoss_build_order(test_lables1)
-        race_build_order.add_protoss_build_order(test_lables2)
-        race_build_order.add_protoss_build_order(test_lables3)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables1)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables2)
+        race_build_order.add_race_build_order(Constants.Race.Protoss, test_lables3)
 
         race_build_order.save_build_orders(TestConstants.TEST_BUILD_ORDER_DIR)
 
         build_order_files: List[str] = self.find_files(TestConstants.TEST_BUILD_ORDER_DIR, Constants.BUILD_ORDER_DIR_FILTER)
         self.assertGreater(len(build_order_files), 0)
 
-        race_build_order_loaded : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
+        race_build_order_loaded : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Protoss)
         race_build_order_loaded.load_build_orders(TestConstants.TEST_BUILD_ORDER_DIR)
 
-        self.assertEqual(len(race_build_order_loaded.VersusProtoss), 3)
+        self.assertEqual(len(race_build_order_loaded.BuildOrdersVersusRace[Constants.Race.Protoss]), 3)
 
     def test_construct_paths(self):
         directory:str = ''
-        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order_t.construct_paths(directory)
-        self.assertEqual( VT_NPY, 'TERRAN_VT.npy' )
-        self.assertEqual( VZ_NPY, 'TERRAN_VZ.npy' )
-        self.assertEqual( VP_NPY, 'TERRAN_VP.npy' )
+        race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Terran)
+        paths : Dict[int, str] = race_build_order_t.construct_paths(directory)
+        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_t.construct_paths(directory)
+        self.assertEqual( paths[Constants.Race.Terran], 'TERRAN_VT.npy' )
+        self.assertEqual( paths[Constants.Race.Zerg], 'TERRAN_VZ.npy' )
+        self.assertEqual( paths[Constants.Race.Protoss], 'TERRAN_VP.npy' )
 
-        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order_z.construct_paths(directory)
-        self.assertEqual( VT_NPY, 'ZERG_VT.npy' )
-        self.assertEqual( VZ_NPY, 'ZERG_VZ.npy' )
-        self.assertEqual( VP_NPY, 'ZERG_VP.npy' )
+        race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Zerg)
+        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_z.construct_paths(directory)
+        paths : Dict[int, str] = race_build_order_t.construct_paths(directory)
+        self.assertEqual( paths[Constants.Race.Terran], 'ZERG_VT.npy' )
+        self.assertEqual( paths[Constants.Race.Zerg], 'ZERG_VZ.npy' )
+        self.assertEqual( paths[Constants.Race.Protoss], 'ZERG_VP.npy' )
 
-        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
-        VT_NPY, VZ_NPY, VP_NPY = race_build_order_p.construct_paths(directory)
-        self.assertEqual( VT_NPY, 'PROTOSS_VT.npy' )
-        self.assertEqual( VZ_NPY, 'PROTOSS_VZ.npy' )
-        self.assertEqual( VP_NPY, 'PROTOSS_VP.npy' )
+        race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Protoss)
+        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_p.construct_paths(directory)
+        paths : Dict[int, str] = race_build_order_t.construct_paths(directory)
+        self.assertEqual( paths[Constants.Race.Terran], 'PROTOSS_VT.npy' )
+        self.assertEqual( paths[Constants.Race.Zerg], 'PROTOSS_VZ.npy' )
+        self.assertEqual( paths[Constants.Race.Protoss], 'PROTOSS_VP.npy' )
 
 if __name__ == '__main__':
     unittest.main()
