@@ -11,6 +11,13 @@ class Race(Enum):
     Terran = 1
     Zerg = 2
     Protoss = 3
+    Genetron = 4
+    Xayid = 5
+    Keiron = 6
+
+    @classmethod
+    def as_string(self, race: int):
+        return Race(race).name
 
 class DistanceMetric(IntEnum):
     Levenshtien = 1
@@ -56,42 +63,20 @@ DENDROGRAMS_DIR: str = os.path.join(ROOT_DIR, 'dendrograms')
 HIST_DIR: str = os.path.join(ROOT_DIR, 'histograms')
 
 
-TERRAN_VT: str = 'TERRAN_VT.npy'
-TERRAN_VZ: str = 'TERRAN_VZ.npy'
-TERRAN_VP: str = 'TERRAN_VP.npy'
-ZERG_VT: str = 'ZERG_VT.npy'
-ZERG_VZ: str = 'ZERG_VZ.npy'
-ZERG_VP: str = 'ZERG_VP.npy'
-PROTOSS_VT: str = 'PROTOSS_VT.npy'
-PROTOSS_VZ: str = 'PROTOSS_VZ.npy'
-PROTOSS_VP: str = 'PROTOSS_VP.npy'
+RACE_V_RACE: str = '{0}_V{1}.npy'
 
 
-TERRAN_VT_GV: str = 'Terran(TvT).gv'
-TERRAN_VZ_GV: str = 'Terran(TvZ).gv'
-TERRAN_VP_GV: str = 'Terran(TvP).gv'
-ZERG_VT_GV: str = 'Zerg(ZvT).gv'
-ZERG_VZ_GV: str = 'Zerg(ZvZ).gv'
-ZERG_VP_GV: str = 'Zerg(ZvP).gv'
-PROTOSS_VT_GV: str = 'Protoss(PvT).gv'
-PROTOSS_VZ_GV: str = 'Protoss(PvZ).gv'
-PROTOSS_VP_GV: str = 'Protoss(PvP).gv'
+RACE_VR_GV: str = '{0}({1}v{2}).gv'
 
-TERRAN_VT_HIST: str = 'Terran(TvT)[{}].png'
-TERRAN_VZ_HIST: str = 'Terran(TvZ)[{}].png'
-TERRAN_VP_HIST: str = 'Terran(TvP)[{}].png'
-ZERG_VT_HIST: str = 'Zerg(ZvT)[{}].png'
-ZERG_VZ_HIST: str = 'Zerg(ZvZ)[{}].png'
-ZERG_VP_HIST: str = 'Zerg(ZvP)[{}].png'
-PROTOSS_VT_HIST: str = 'Protoss(ZvT)[{}].png'
-PROTOSS_VZ_HIST: str = 'Protoss(ZvZ)[{}].png'
-PROTOSS_VP_HIST: str = 'Protoss(ZvP)[{}].png'
+
+RACE_VR_HIST: str = '{0}({1}v{2})'
+HIST_EXT: str = '[{}].png'
+
 
 
 UNCATEGORISED_FILE: str = 'Uncategorised.txt'
 
-LabelEncoderTerran: str = 'LabelEncoderTerran.npy'
-LabelEncoderZerg: str = 'LabelEncoderZerg.npy'
-LabelEncoderProtoss: str = 'LabelEncoderProtoss.npy'
+LabelEncoderRace: str = 'LabelEncoder{0}.npy'
+
 
 HyperparametersFilename: str = 'Hyperparameters.json'
