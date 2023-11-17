@@ -39,10 +39,11 @@ def create_histogram_kullback_leibler_distance_metric(label_encoder: LabelEncode
 def calculate_histogram(label_encoder: LabelEncoder, build_order: Type[BUILD_ORDER])-> List[int]:
     words: List[str] = label_encoder.KnownWords
     word_indexes = label_encoder.transform(words)
-
+    
+    bo = np.array(build_order)
     frequencies: List[int] = []
     for index in word_indexes:
-        unit_count: int = np.count_nonzero( build_order == index )
+        unit_count: int = np.count_nonzero( bo == index )
         frequencies.append( unit_count )
     
     return frequencies

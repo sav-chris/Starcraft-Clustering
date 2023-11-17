@@ -38,7 +38,8 @@ class BuildEvent:
         self.Name: str = name
 
 #BUILD_ORDER: Type[List[int]] = List[int] 
-BUILD_ORDER: Type[npt.NDArray] = npt.NDArray 
+#BUILD_ORDER: Type[npt.NDArray] = npt.NDArray 
+BUILD_ORDER: Type[List[int]] = List[int]
 BUILD_ORDER_STR: Type[List[str]] = List[str] 
 BUILD_ORDER_CHR: Type[List[str]] = List[str] 
 

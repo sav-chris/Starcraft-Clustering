@@ -30,6 +30,38 @@ This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/skl
 
 Since Starcraft build orders are not numbers, [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance is used as a distance metric, to measure the distance between two build orders. 
 
+# Dependencies 
+
+[Graphviz](https://graphviz.org/) is used to create clustering diagrams.
+
+You can install it on windows using:
+
+```bash
+winget install graphviz
+```
+
+To add graphviz to your system path
+
+start -> Environment Variables
+
+![environment](docs/img/env.png)
+
+System Variables -> Path 
+
+![](docs/img/env-path.png)
+
+Edit
+
+Add your graphviz path here 
+
+![](docs/img/graph-path.png)
+
+On Ubuntu:
+
+```bash
+sudo apt-get install graphviz
+```
+
 
 # Running it
 

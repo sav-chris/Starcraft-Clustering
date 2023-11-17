@@ -22,8 +22,8 @@ import Histogram as hist
 class RaceBuildOrder:
 
     def __init__(self, Race: Race):
-        self.VersusTerran: Type[List[BUILD_ORDER]] = []
-        self.VersusZerg: Type[List[BUILD_ORDER]] = []
+        self.VersusTerran : Type[List[BUILD_ORDER]] = []
+        self.VersusZerg   : Type[List[BUILD_ORDER]] = []
         self.VersusProtoss: Type[List[BUILD_ORDER]] = []
 
         self.Label_Encoder: LabelEncoder = LabelEncoder()
