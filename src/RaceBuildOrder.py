@@ -49,7 +49,7 @@ class RaceBuildOrder:
 
         for race in Constants.Race:
             self.BuildOrdersVersusRace[race] = []
-            self.RaceDistanceMatrix[race] = np.zeros(0)
+            #self.RaceDistanceMatrix[race] = np.zeros(0)
 
 
 
@@ -159,19 +159,18 @@ class RaceBuildOrder:
 
     def decode_labels(self, build_order: BUILD_ORDER)->BUILD_ORDER_STR:
         return self.Label_Encoder.inverse_transform(build_order)
+    
+    def format_RvR(self, this_race : Race, vs_race: Race)->str:
+        # TO DO: Does this belong somewhere else?
+        return Constants.RACE_V_RACE.format(Race.as_string(this_race).upper(), Race.as_string(vs_race)[0]) 
 
     def construct_paths(self, directory: str)->Dict[int, str]:
         paths: Dict[int, str] = {}
         for race in self.BuildOrdersVersusRace.keys():
-            paths[race] = os.path.join
-            (
-                directory, 
-                Constants.RACE_V_RACE.format
-                (
-                    Race.as_string(self.Race), 
-                    Race.as_string(race)
-                ) 
-            )
+            #filename: str = Constants.RACE_V_RACE.format(Race.as_string(self.Race).upper(), Race.as_string(race)[0]) 
+            filename: str = self.format_RvR(self.Race, race) 
+            path: str = os.path.join(directory, filename)
+            paths[race] = path
 
         return paths
         #VT_NPY: str = ''
@@ -282,7 +281,8 @@ class RaceBuildOrder:
     def load_distance_matricies(self, directory:str)->None:
         paths: Dict[int, str] = self.construct_paths(directory)
         for race in paths.keys():
-            self.RaceDistanceMatrix[race] = np.load(paths[race])
+            if os.path.exists(paths[race]):
+                self.RaceDistanceMatrix[race] = np.load(paths[race])
 
         #VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
         #self.TerranDistanceMatrix  = np.load( VT_NPY)
@@ -292,11 +292,8 @@ class RaceBuildOrder:
     def OPTICS_clustering(self, hyperparameters: Hyperparameters):
         
         for race in Race:
-            self.clustering_vRace[race] = OPTICS(
-                eps=hyperparameters.ClusteringParams.epsilon, 
-                min_samples=hyperparameters.ClusteringParams.min_samples, 
-                metric='precomputed'
-            ).fit(self.RaceDistanceMatrix[race])
+            if race in self.RaceDistanceMatrix:
+                self.clustering_vRace[race] = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.RaceDistanceMatrix[race])
 
         return self.clustering_vRace
         

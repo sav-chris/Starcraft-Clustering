@@ -62,7 +62,7 @@ DENDROGRAMS_DIR: str = os.path.join(ROOT_DIR, 'dendrograms')
 HIST_DIR: str = os.path.join(ROOT_DIR, 'histograms')
 
 
-RACE_V_RACE: str = '{0}_v_{1}.npy'
+RACE_V_RACE: str = '{0}_V{1}.npy'
 #TERRAN_VT: str = 'TERRAN_VT.npy'
 #TERRAN_VZ: str = 'TERRAN_VZ.npy'
 #TERRAN_VP: str = 'TERRAN_VP.npy'
