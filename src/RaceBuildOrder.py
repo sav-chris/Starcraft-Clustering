@@ -241,18 +241,12 @@ class RaceBuildOrder:
     def load_build_orders(self, directory:str)->None:
         paths: Dict[int, str] = self.construct_paths(directory)
         for race in paths.keys():
-            self.load_build_order_file(paths[race], self.BuildOrdersVersusRace[race])
+            if os.path.exists(paths[race]):
+                self.load_build_order_file(paths[race], self.BuildOrdersVersusRace[race])
 
-        self.Label_Encoder.load_from_file
-        (
-            os.path.join
-            (
-                directory, Constants.LabelEncoderRace.format
-                (
-                    Race.as_string(self.Race)
-                )
-            )
-        )
+        label_encoder: str = os.path.join(directory, Constants.LabelEncoderRace.format(Race.as_string(self.Race)))
+        if os.path.exists(label_encoder):
+            self.Label_Encoder.load_from_file(label_encoder)
 
         #VT_NPY, VZ_NPY, VP_NPY = self.construct_paths(directory)
         #self.load_build_order_file(VT_NPY, self.VersusTerran)
