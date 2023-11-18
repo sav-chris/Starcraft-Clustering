@@ -29,7 +29,7 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Terran]), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        #race_build_order.add_terran_build_order(test_build_order) 
+        
         race_build_order.add_race_build_order(Constants.Race.Terran, test_build_order) 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Terran]), 1)
 
@@ -38,7 +38,7 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Zerg]), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        #race_build_order.add_zerg_build_order(test_build_order) 
+        
         race_build_order.add_race_build_order(Constants.Race.Zerg, test_build_order) 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Zerg]), 1)
 
@@ -47,7 +47,7 @@ class TestRaceBuildOrder(unittest.TestCase):
 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss]), 0)
         test_build_order: RaceBuildOrder.BUILD_ORDER_STR = ['Drone', 'Drone', 'Hatchery', 'Drone']
-        #race_build_order.add_protoss_build_order(test_build_order) 
+        
         race_build_order.add_race_build_order(Constants.Race.Protoss, test_build_order) 
         self.assertEqual(len(race_build_order.BuildOrdersVersusRace[Constants.Race.Protoss]), 1)
     
