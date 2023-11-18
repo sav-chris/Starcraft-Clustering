@@ -62,8 +62,9 @@ class RaceBuildOrder:
         print(self.Race)
         Race_Uncategorised : Dict[int, int] = {}
         for race in self.clustering_vRace.keys():
-            print(f'Uncategorised { Race.as_string(race) } Builds: {Race_Uncategorised[race]}')
-            Race_Uncategorised[race] = self.count_uncategorised(self.clustering_vRace[self.Race]) 
+            race_str: str = Race.as_string(race)
+            Race_Uncategorised[race] = self.count_uncategorised(self.clustering_vRace[self.Race])
+            print(f'Uncategorised { race_str } Builds: {Race_Uncategorised[race]}')
         
         #T_Uncategorised:int = self.count_uncategorised(self.clustering_vT)
         #Z_Uncategorised:int = self.count_uncategorised(self.clustering_vZ)
@@ -330,10 +331,11 @@ class RaceBuildOrder:
         race_filenames: Dict[int, str] = { } 
         
         for race in Race:
-            race_filenames[race] = os.path.join(folder, self.format_graphviz_filename(self.Race, race))
-            dendrogram_vRace[race] = Dendrogram("Dendrogram", race_filenames[race])
+            if len(self.BuildOrdersVersusRace[race]) > 0:
+                race_filenames[race] = os.path.join(folder, self.format_graphviz_filename(self.Race, race))
+                dendrogram_vRace[race] = Dendrogram("Dendrogram", race_filenames[race])
 
-            self.draw_dendrogram(dendrogram_vRace[race], self.clustering_vRace[race], self.BuildOrdersVersusRace[race])
+                self.draw_dendrogram(dendrogram_vRace[race], self.clustering_vRace[race], self.BuildOrdersVersusRace[race])
 
         uncategorised_filepath: str = os.path.join(folder,  f'{self.Race}.{Constants.UNCATEGORISED_FILE}')
         self.save_uncategorised(uncategorised_filepath)
