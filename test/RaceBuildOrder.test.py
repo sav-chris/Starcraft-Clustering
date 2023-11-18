@@ -90,20 +90,19 @@ class TestRaceBuildOrder(unittest.TestCase):
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Protoss)
 
         paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
-        # VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Protoss, Constants.Race.Terran) ), paths[Constants.Race.Terran])
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Protoss, Constants.Race.Zerg  ) ), paths[Constants.Race.Zerg])
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Protoss, Constants.Race.Protoss)), paths[Constants.Race.Protoss])
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Zerg)
-        #VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
+        
         paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Zerg, Constants.Race.Terran ) ), paths[Constants.Race.Terran])
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Zerg, Constants.Race.Zerg   ) ), paths[Constants.Race.Zerg])
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Zerg, Constants.Race.Protoss) ), paths[Constants.Race.Protoss])
 
         race_build_order : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(RaceBuildOrder.Race.Terran)
-        #VT_NPY, VZ_NPY, VP_NPY = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         paths : Dict[int, str] = race_build_order.construct_paths(Constants.LEVENSHTEIN_DIR)
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Terran, Constants.Race.Terran ) ), paths[Constants.Race.Terran])
         self.assertEqual(os.path.join(Constants.LEVENSHTEIN_DIR, race_build_order.format_RvR(Constants.Race.Terran, Constants.Race.Zerg   ) ), paths[Constants.Race.Zerg])
@@ -161,20 +160,20 @@ class TestRaceBuildOrder(unittest.TestCase):
         directory:str = ''
         race_build_order_t : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Terran)
         paths : Dict[int, str] = race_build_order_t.construct_paths(directory)
-        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_t.construct_paths(directory)
+        
         self.assertEqual( paths[Constants.Race.Terran], 'TERRAN_VT.npy' )
         self.assertEqual( paths[Constants.Race.Zerg], 'TERRAN_VZ.npy' )
         self.assertEqual( paths[Constants.Race.Protoss], 'TERRAN_VP.npy' )
 
         race_build_order_z : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Zerg)
-        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_z.construct_paths(directory)
+        
         paths : Dict[int, str] = race_build_order_z.construct_paths(directory)
         self.assertEqual( paths[Constants.Race.Terran], 'ZERG_VT.npy' )
         self.assertEqual( paths[Constants.Race.Zerg], 'ZERG_VZ.npy' )
         self.assertEqual( paths[Constants.Race.Protoss], 'ZERG_VP.npy' )
 
         race_build_order_p : RaceBuildOrder.RaceBuildOrder = RaceBuildOrder.RaceBuildOrder(Constants.Race.Protoss)
-        #VT_NPY, VZ_NPY, VP_NPY = race_build_order_p.construct_paths(directory)
+        
         paths : Dict[int, str] = race_build_order_p.construct_paths(directory)
         self.assertEqual( paths[Constants.Race.Terran], 'PROTOSS_VT.npy' )
         self.assertEqual( paths[Constants.Race.Zerg], 'PROTOSS_VZ.npy' )

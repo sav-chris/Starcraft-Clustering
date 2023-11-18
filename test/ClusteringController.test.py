@@ -14,9 +14,7 @@ class TestClusteringController(unittest.TestCase):
         controller.load_directory(TestConstants.TEST_DATA_DIR)
         
         self.assertGreater(len(controller.RaceBuildOrders[Constants.Race.Terran].BuildOrdersVersusRace[Constants.Race.Protoss]), 0)
-        self.assertGreater(len(controller.RaceBuildOrders[Constants.Race.Protoss].BuildOrdersVersusRace[Constants.Race.Terran]), 0)
-        #self.assertGreater(len(controller.TerranBuildOrders.VersusProtoss), 0)
-        #self.assertGreater(len(controller.ProtossBuildOrders.VersusTerran), 0)
+        self.assertGreater(len(controller.RaceBuildOrders[Constants.Race.Protoss].BuildOrdersVersusRace[Constants.Race.Terran]), 0)        
 
     def test_clustering(self):
         controller: ClusteringController = ClusteringController()

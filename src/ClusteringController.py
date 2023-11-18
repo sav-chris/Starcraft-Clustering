@@ -28,9 +28,6 @@ class ClusteringController:
         for race in Race:
             self.RaceBuildOrders[race] = RaceBuildOrder(race)
 
-        #self.TerranBuildOrders : RaceBuildOrder = RaceBuildOrder(Race.Terran)
-        #self.ZergBuildOrders   : RaceBuildOrder = RaceBuildOrder(Race.Zerg)
-        #self.ProtossBuildOrders: RaceBuildOrder = RaceBuildOrder(Race.Protoss)
         self.Hyperparameters = hyperparameters
 
     def save_hyperparameters(self, filename: str):
@@ -40,12 +37,7 @@ class ClusteringController:
             text_file.write(paramsJsonStr)
         
     def select_race_build_order(self, player: Player)->RaceBuildOrder:
-        #race_build_order: RaceBuildOrder = self.ProtossBuildOrders
-        #if player.Race == Race.Terran:
-        #        race_build_order = self.TerranBuildOrders
-        #if player.Race == Race.Zerg:
-        #    race_build_order = self.ZergBuildOrders
-        #return race_build_order
+        
         if not player.Race in self.RaceBuildOrders:
             self.RaceBuildOrders[player.Race] = RaceBuildOrder(player.Race)
         return self.RaceBuildOrders[player.Race]
@@ -65,55 +57,29 @@ class ClusteringController:
             race_build_order_p1.add_race_build_order(replay.Player2.Race, replay.Player1.BuildOrder)
             race_build_order_p2.add_race_build_order(replay.Player1.Race, replay.Player2.BuildOrder)
 
-            #if replay.Player2.Race == Constants.Race.Protoss:
-            #    race_build_order_p1.add_protoss_build_order(replay.Player1.BuildOrder)
-            #if replay.Player2.Race == Constants.Race.Terran:
-            #    race_build_order_p1.add_terran_build_order(replay.Player1.BuildOrder)
-            #if replay.Player2.Race == Constants.Race.Zerg:
-            #    race_build_order_p1.add_zerg_build_order(replay.Player1.BuildOrder)
-
-            #if replay.Player1.Race == Constants.Race.Protoss:
-            #    race_build_order_p2.add_protoss_build_order(replay.Player2.BuildOrder)
-            #if replay.Player1.Race == Constants.Race.Terran:
-            #    race_build_order_p2.add_terran_build_order(replay.Player2.BuildOrder)
-            #if replay.Player1.Race == Constants.Race.Zerg:
-            #    race_build_order_p2.add_zerg_build_order(replay.Player2.BuildOrder)
     
     def save_build_orders(self, directory: str)->None:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].save_build_orders(directory)
-        #self.TerranBuildOrders.save_build_orders(directory)
-        #self.ZergBuildOrders.save_build_orders(directory)
-        #self.ProtossBuildOrders.save_build_orders(directory)
 
     def load_build_orders(self, directory: str)->None:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].load_build_orders(directory)
-        #self.TerranBuildOrders.load_build_orders(directory)
-        #self.ZergBuildOrders.load_build_orders(directory)
-        #self.ProtossBuildOrders.load_build_orders(directory)
 
     def compute_distance_matrices(self, verbose:bool = False, distance_metric: Constants.DistanceMetric = Hyperparameters.distance_metric)->None:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].compute_distance_matrices(verbose, distance_metric)
-        #self.TerranBuildOrders.compute_distance_matrices(verbose, distance_metric)
-        #self.ZergBuildOrders.compute_distance_matrices(verbose, distance_metric)
-        #self.ProtossBuildOrders.compute_distance_matrices(verbose, distance_metric)
+        
 
     def save_distance_matricies(self, directory: str)->None:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].save_distance_matricies(directory)
 
-        #self.TerranBuildOrders.save_distance_matricies(directory)
-        #self.ZergBuildOrders.save_distance_matricies(directory)
-        #self.ProtossBuildOrders.save_distance_matricies(directory)
 
     def load_distance_matricies(self, directory: str)->None:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].load_distance_matricies(directory)
-        #self.TerranBuildOrders.load_distance_matricies(directory)
-        #self.ZergBuildOrders.load_distance_matricies(directory)
-        #self.ProtossBuildOrders.load_distance_matricies(directory)
+            
 
     def count_npy_files_in_dir(self, directory: str)->int:
         filepattern: str = os.path.join(directory, Constants.LEVENSHTEIN_DIR_FILTER)
@@ -133,12 +99,7 @@ class ClusteringController:
             opticsClustering[race] : Dict[int, OPTICS] = self.RaceBuildOrders[race].OPTICS_clustering(self.Hyperparameters)
 
         return opticsClustering
-        #Terran_vT, Terran_vZ, Terran_vP = self.TerranBuildOrders.OPTICS_clustering(self.Hyperparameters)
-        #Zerg_vT, Zerg_vZ, Zerg_vP = self.ZergBuildOrders.OPTICS_clustering(self.Hyperparameters)
-        #Protoss_vT, Protoss_vZ, Protoss_vP = self.ProtossBuildOrders.OPTICS_clustering(self.Hyperparameters)
-
-        #return Terran_vT, Terran_vZ, Terran_vP, Zerg_vT, Zerg_vZ, Zerg_vP, Protoss_vT, Protoss_vZ, Protoss_vP
-        
+    
     
     def generate_svg(self, folder):
         filepattern: str = os.path.join(folder, Constants.GRAPHVIZ_DIR_FILTER)
@@ -161,9 +122,6 @@ class ClusteringController:
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].draw_clustering(timestamp_folder)
         
-        #self.TerranBuildOrders.draw_clustering(timestamp_folder)
-        #self.ZergBuildOrders.draw_clustering(timestamp_folder)
-        #self.ProtossBuildOrders.draw_clustering(timestamp_folder)
         self.generate_svg(timestamp_folder)
 
         self.save_hyperparameters(os.path.join(timestamp_folder, Constants.HyperparametersFilename))
@@ -174,10 +132,6 @@ class ClusteringController:
 
         for race in self.RaceBuildOrders:
             self.RaceBuildOrders[race].draw_histograms(timestamp_folder)
-
-        #self.TerranBuildOrders.draw_histograms(timestamp_folder)
-        #self.ZergBuildOrders.draw_histograms(timestamp_folder)
-        #self.ProtossBuildOrders.draw_histograms(timestamp_folder)
 
         self.save_hyperparameters(os.path.join(timestamp_folder, Constants.HyperparametersFilename))
 
