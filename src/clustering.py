@@ -10,7 +10,8 @@ hyperparameters: Hyperparameters = Hyperparameters.Hyperparameters(
     Constants.CUTOFF_TIME, 
     Constants.CLUST_PARAMS, 
     filter_cheap_units=False,
-    distance_metric=Constants.DistanceMetric.Histogram_Jensen_Shannon
+    distance_metric=Constants.DistanceMetric.Histogram_Jensen_Shannon,
+    ComputeHistogram = False
     )
 clustering_controller: ClusteringController = ClusteringController(hyperparameters)
 
@@ -31,8 +32,9 @@ else:
     print('Loading Precomputed Distance Matricies ...')
     clustering_controller.load_distance_matricies(Constants.LEVENSHTEIN_DIR)
 
-print('Compute Histograms ...')
-clustering_controller.draw_histograms()
+if clustering_controller.Hyperparameters.ComputeHistogram:
+    print('Compute Histograms ...')
+    clustering_controller.draw_histograms()
 
 print('OPTICS Clustering ...')
 clustering_controller.optics_clustering()

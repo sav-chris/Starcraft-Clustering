@@ -128,8 +128,8 @@ class ClusteringController:
 
 
     def optics_clustering(self):
-        opticsClustering : Dict[int, Dict[int, OPTICS]] 
-        for race in self.RaceBuildOrders:
+        opticsClustering : Dict[int, Dict[int, OPTICS]] = {}
+        for race in self.RaceBuildOrders: 
             opticsClustering[race] : Dict[int, OPTICS] = self.RaceBuildOrders[race].OPTICS_clustering(self.Hyperparameters)
 
         return opticsClustering

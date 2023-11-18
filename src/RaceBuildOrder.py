@@ -287,7 +287,8 @@ class RaceBuildOrder:
         
         for race in Race:
             if race in self.RaceDistanceMatrix:
-                self.clustering_vRace[race] = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.RaceDistanceMatrix[race])
+                if len(self.RaceDistanceMatrix[race]) > 0:
+                    self.clustering_vRace[race] = OPTICS(eps=hyperparameters.ClusteringParams.epsilon, min_samples=hyperparameters.ClusteringParams.min_samples, metric='precomputed').fit(self.RaceDistanceMatrix[race])
 
         return self.clustering_vRace
         
@@ -320,7 +321,7 @@ class RaceBuildOrder:
 
         race1_str: str = Race.as_string(race1)
         race2_str: str = Race.as_string(race2)
-        return Constants.RACE_VR_HIST.format(race1_str, race1_str[0], race2_str[0])
+        return Constants.RACE_VR_HIST.format(race1_str, race1_str[0], race2_str[0]) + Constants.HIST_EXT
             
 
     def draw_clustering(self, folder):
@@ -329,7 +330,7 @@ class RaceBuildOrder:
         race_filenames: Dict[int, str] = { } 
         
         for race in Race:
-            race_filenames[race] = os.path.join(folder, self.format_graphviz_filename(self.race, race))
+            race_filenames[race] = os.path.join(folder, self.format_graphviz_filename(self.Race, race))
             dendrogram_vRace[race] = Dendrogram("Dendrogram", race_filenames[race])
 
             self.draw_dendrogram(dendrogram_vRace[race], self.clustering_vRace[race], self.BuildOrdersVersusRace[race])
@@ -388,8 +389,8 @@ class RaceBuildOrder:
         race_titles: Dict[int, str] = { }
         
         for race in Race:
-            race_filenames[race] = os.path.join(folder, self.format_histogram_filename(self.race, race))
-            race_titles[race] = "{0}v{1}".format(Race.as_string(self.race)[0], Race.as_string(race)[0])
+            race_filenames[race] = os.path.join(folder, self.format_histogram_filename(self.Race, race))
+            race_titles[race] = "{0}v{1}".format(Race.as_string(self.Race)[0], Race.as_string(race)[0])
             
             self.plot_hist(race_filenames[race], race_titles[race], self.BuildOrdersVersusRace)
             
