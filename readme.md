@@ -1,6 +1,73 @@
-# Starcraft Clustering
+# StarCluster
 
-This project performs clustering on starcraft build orders
+This project performs clustering on starcraft 2 build orders.
+
+##What is Starcraft 2?##
+
+A real time strategy video game. It has a history of being studied in the context of artificial intelligence, see [AlphaStar](https://en.wikipedia.org/wiki/AlphaStar_(software)).
+
+##What is Clustering?##
+
+A machine learning technique for labeling data. 
+
+An example of soem data points labeled using [K-Means](https://en.wikipedia.org/wiki/K-means_clustering) Clustering:
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/KMeans-Gaussian-data.svg/250px-KMeans-Gaussian-data.svg.png)
+
+##What's a Build order?##
+
+Much like in the game of chess, where players study openers. See [Chess Opening](https://en.wikipedia.org/wiki/Chess_opening) .
+
+Starcraft Players study build orders, see [Spawning Tool](https://lotv.spawningtool.com/build/). 
+
+In chess an opening might look like this:
+
+`1.e4 c6 2.d4 d5 3.e5 Bf5 4.Bd3 Bxd3 5.Qxd3 e6`
+
+A starcraft build order might look like this:
+
+`Pylon,Gateway,Assimilator,Assimilator,Gateway,CyberneticsCore,Pylon,Stalker,Sentry,Warp Gate,Pylon,Pylon` 
+
+Notice that these build orders/openers can be thought of as a dequence of symbols or words.
+
+Chess players categorise openers into categories. For example: Caro–Kann, Sicialian Defence, Queens Gambit etc.
+
+I want to learn what the openings are in starcraft from professional games. 
+
+StarCluster reads in replay files of professional starcraft 2 games an performs a clustering algorithm on the data set and outputs [dendrograms](https://en.wikipedia.org/wiki/Dendrogram).
+
+##Wait, there are professional games? ##
+
+Professional tournaments can have large prize pools, the players are highly skilled so the replay files are quite good quality for the purposes of clustering. 
+
+##How do you cluster your build orders?##
+
+This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering. The OPTICS algorithm can cluster any data points as long as you can define a distance metric betweeen them.
+
+##How do you define the distance between two starcraft build orders?##
+
+I first tried [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance. 
+This is the edit distance (minimumm number of insertions, deletions or substitutions)
+For example, consider these two build orders:
+`SupplyDepot,Barracks,Refinery,Orbital Command, CommandCenter,BarracksReactor,SupplyDepot,CommandCenter`
+
+`SupplyDepot,Barracks,Refinery,Reaper, Orbital Command,CommandCenter,SupplyDepot,BarracksReactor`
+
+Have edit distance 3. 
+
+I found that the levenshtien distance was too sensitive to slight changes in the order of things. I had better success using [Kullback–Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)
+and [Jensen–Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence).
+
+I create a histogram of everything that was built in the opener, then use Kullback–Leibler or Jensen–Shannon divergence to compute the distance between two histograms. 
+
+Kullback_Leibler:
+$$
+D_{\mathrm{KL}}(P \,\|\, Q) = \sum_{x} P(x)\, \log \frac{P(x)}{Q(x)}.
+$$
+
+Jensen-Shannon:
+$$
+\mathrm{JSD}(P \,\|\, Q) = \frac{1}{2} D_{\mathrm{KL}}(P \,\|\, M) + \frac{1}{2} D_{\mathrm{KL}}(Q \,\|\, M).
+$$
 
 # Folder Structure
 
