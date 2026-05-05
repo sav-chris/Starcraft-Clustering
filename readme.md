@@ -66,6 +66,7 @@ D_{KL}(P || Q) = \sum_{x} P(x) \log \frac{P(x)}{Q(x)}
 $$
 
 Jensen-Shannon:
+
 $$
 JSD(P || Q) = \frac{1}{2} D_{KL}(P || M) + \frac{1}{2} D_{KL}(Q || M)
 $$
