@@ -2,11 +2,11 @@
 
 This project performs clustering on starcraft 2 build orders.
 
-## What is Starcraft 2?
+### What is Starcraft 2?
 
 A real time strategy video game. It has a history of being studied in the context of artificial intelligence, see [AlphaStar](https://en.wikipedia.org/wiki/AlphaStar_(software)).
 
-## What is Clustering?
+### What is Clustering?
 
 A machine learning technique for labeling data. 
 
@@ -35,15 +35,15 @@ I want to learn what the openings are in starcraft from professional games.
 
 StarCluster reads in replay files of professional starcraft 2 games and performs a clustering algorithm on the data set and outputs [dendrograms](https://en.wikipedia.org/wiki/Dendrogram).
 
-## Wait, there are professional games? 
+### Wait, there are professional games? 
 
 Professional tournaments can have large prize pools, the players are highly skilled so the replay files are quite good quality for the purposes of clustering. 
 
-## How do you cluster your build orders?
+### How do you cluster your build orders?
 
 This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering. The OPTICS algorithm can cluster any data points as long as you can define a distance metric between them.
 
-## How do you define the distance between two starcraft build orders?
+### How do you define the distance between two starcraft build orders?
 
 I first tried [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance. 
 This is the edit distance (minimum number of insertions, deletions or substitutions)
