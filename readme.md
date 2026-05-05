@@ -13,7 +13,10 @@ A real time strategy video game. It has a history of being studied in the contex
 A machine learning technique for labeling data. 
 
 An example of some data points labeled using [K-Means](https://en.wikipedia.org/wiki/K-means_clustering) Clustering:
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/KMeans-Gaussian-data.svg/250px-KMeans-Gaussian-data.svg.png)
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/KMeans-Gaussian-data.svg/250px-KMeans-Gaussian-data.svg.png" alt="K-Means example">
+</p>
 
 ---
 
