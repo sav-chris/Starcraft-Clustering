@@ -59,7 +59,7 @@ and [Jensen–Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93S
 
 I create a histogram of everything that was built in the opener, then use Kullback–Leibler or Jensen–Shannon divergence to compute the distance between two histograms. 
 
-Kullback_Leibler:
+Kullback-Leibler:
 
 $$
 D_{KL}(P, Q) = \sum_{x} P(x) \log \frac{P(x)}{Q(x)}
@@ -76,7 +76,6 @@ Where
 $$
 M = \frac{1}{2}(P + Q)
 $$
-
 
 
 # Folder Structure
