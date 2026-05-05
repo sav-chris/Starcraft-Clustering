@@ -62,11 +62,11 @@ I create a histogram of everything that was built in the opener, then use Kullba
 Kullback_Leibler:
 
 $$
-D_{\mathbf{KL}}(P \,\|\, Q) = \sum_{x} P(x)\, \log \frac{P(x)}{Q(x)}.
+D_{KL}(P || Q) = \sum_{x} P(x), \log \frac{P(x)}{Q(x)}
 
 $$
 
-D_{\mathrm{KL}}(P \,\|\, Q) 
+D_{KL}(P ,|\, Q) 
 = \sum_{x} P(x)\, \log \frac{P(x)}{Q(x)}.
 
 
