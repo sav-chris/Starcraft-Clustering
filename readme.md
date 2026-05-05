@@ -62,14 +62,21 @@ I create a histogram of everything that was built in the opener, then use Kullba
 Kullback_Leibler:
 
 $$
-D_{KL}(P || Q) = \sum_{x} P(x) \log \frac{P(x)}{Q(x)}
+D_{KL}(P, Q) = \sum_{x} P(x) \log \frac{P(x)}{Q(x)}
 $$
 
 Jensen-Shannon:
 
 $$
-JSD(P || Q) = \frac{1}{2} D_{KL}(P || M) + \frac{1}{2} D_{KL}(Q || M)
+JSD(P, Q) = \frac{1}{2} D_{KL}(P, M) + \frac{1}{2} D_{KL}(Q, M)
 $$
+
+Where 
+
+$$
+M = \frac{1}{2}(P + Q)
+$$
+
 
 
 # Folder Structure
