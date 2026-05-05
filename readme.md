@@ -221,3 +221,8 @@ The dendrogram images will be stored in [svg](https://en.wikipedia.org/wiki/Scal
 
 ![Example Dendrogram](docs/example%20dendrogram.png)
 
+# Deep Wiki Docs
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sav-chris/Starcraft-Clustering) 
+
+
