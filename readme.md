@@ -1,4 +1,5 @@
 # StarCluster
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sav-chris/Starcraft-Clustering) 
 
 This project performs clustering on starcraft 2 build orders.
 
@@ -220,9 +221,4 @@ The files `Race.Protoss.Uncategorised.txt`,  `Race.Terran.Uncategorised.txt` and
 The dendrogram images will be stored in [svg](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) files and look like this:
 
 ![Example Dendrogram](docs/example%20dendrogram.png)
-
-# Deep Wiki Docs
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sav-chris/Starcraft-Clustering) 
-
 
