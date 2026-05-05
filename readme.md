@@ -65,6 +65,7 @@ This algorithm is unsupervised so you don't need to collect a separate training 
 I first tried [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance. 
 This is the edit distance (minimum number of insertions, deletions or substitutions)
 For example, consider these two build orders:
+
 `SupplyDepot,Barracks,Refinery,Orbital Command, CommandCenter,BarracksReactor,SupplyDepot,CommandCenter`
 
 `SupplyDepot,Barracks,Refinery,Reaper, Orbital Command,CommandCenter,SupplyDepot,BarracksReactor`
