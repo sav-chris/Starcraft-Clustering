@@ -100,7 +100,7 @@ $$
 
     .
     ├── Data                    # Input replay files, all subfolders will be traversed
-    ├── docs                    # Folder for more documentation
+    ├── docs                    # Folder for more documentation and background research
     ├── src                     # Source Code
     ├── test                    # Test Cases
     ├── build.orders            # Preprocessed build orders stored here 
