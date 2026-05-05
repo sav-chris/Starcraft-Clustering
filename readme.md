@@ -67,7 +67,7 @@ Have edit distance 3.
 I found that the levenshtien distance was too sensitive to slight changes in the order of things. I had better success using [Kullback–Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)
 and [Jensen–Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence).
 
-I create a histogram of everything that was built in the opener, then use Kullback–Leibler or Jensen–Shannon divergence to compute the distance between two histograms. 
+I create a histogram of everything that was built in the opener, then use Kullback–Leibler or Jensen–Shannon divergence to compute the distance between two histograms $P$ and $Q$ . 
 
 Kullback-Leibler:
 
