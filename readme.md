@@ -8,6 +8,10 @@ This project performs clustering on starcraft 2 build orders.
 
 <h2 style="border-bottom: 1px solid #ccc;">🎮 What is Starcraft 2?</h2>
 **🎮 What is Starcraft 2?**
+<h2 style="border-bottom: 1px solid #ccc; font-weight: 800;">
+  🎮 What is Starcraft 2?
+</h2>
+
 
 A real time strategy video game. It has a history of being studied in the context of artificial intelligence, see [AlphaStar](https://en.wikipedia.org/wiki/AlphaStar_(software)).
 
