@@ -10,7 +10,7 @@ A real time strategy video game. It has a history of being studied in the contex
 
 A machine learning technique for labeling data. 
 
-An example of soem data points labeled using [K-Means](https://en.wikipedia.org/wiki/K-means_clustering) Clustering:
+An example of some data points labeled using [K-Means](https://en.wikipedia.org/wiki/K-means_clustering) Clustering:
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/KMeans-Gaussian-data.svg/250px-KMeans-Gaussian-data.svg.png)
 
 ## What's a Build order?
@@ -27,13 +27,13 @@ A starcraft build order might look like this:
 
 `Pylon,Gateway,Assimilator,Assimilator,Gateway,CyberneticsCore,Pylon,Stalker,Sentry,Warp Gate,Pylon,Pylon` 
 
-Notice that these build orders/openers can be thought of as a dequence of symbols or words.
+Notice that these build orders/openers can be thought of as a sequence of symbols or words.
 
-Chess players categorise openers into categories. For example: Caro–Kann, Sicialian Defence, Queens Gambit etc.
+Chess players categorise openers into categories. For example: Caro–Kann, Sicilian Defence, Queens Gambit etc.
 
 I want to learn what the openings are in starcraft from professional games. 
 
-StarCluster reads in replay files of professional starcraft 2 games an performs a clustering algorithm on the data set and outputs [dendrograms](https://en.wikipedia.org/wiki/Dendrogram).
+StarCluster reads in replay files of professional starcraft 2 games and performs a clustering algorithm on the data set and outputs [dendrograms](https://en.wikipedia.org/wiki/Dendrogram).
 
 ## Wait, there are professional games? 
 
@@ -41,12 +41,12 @@ Professional tournaments can have large prize pools, the players are highly skil
 
 ## How do you cluster your build orders?
 
-This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering. The OPTICS algorithm can cluster any data points as long as you can define a distance metric betweeen them.
+This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering. The OPTICS algorithm can cluster any data points as long as you can define a distance metric between them.
 
 ## How do you define the distance between two starcraft build orders?
 
 I first tried [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance. 
-This is the edit distance (minimumm number of insertions, deletions or substitutions)
+This is the edit distance (minimum number of insertions, deletions or substitutions)
 For example, consider these two build orders:
 `SupplyDepot,Barracks,Refinery,Orbital Command, CommandCenter,BarracksReactor,SupplyDepot,CommandCenter`
 
@@ -89,7 +89,7 @@ $$
     ├── build.orders            # Preprocessed build orders stored here 
     ├── levenshtein             # precomputed levenshtein distances stored here
     ├── venv                    # Convenient location for python virtual environment
-    ├── dendrograms             # Output diretory, contains clustering diagrams
+    ├── dendrograms             # Output directory, contains clustering diagrams
     └── test.data               # Data associated with test cases
 
 
@@ -201,7 +201,7 @@ python RaceBuildOrder.test.py
 
 # Dendrograms 
 
-The program output is stored in the `Dendrongrams` folder.
+The program output is stored in the `Dendrograms` folder.
 
 Each run is stored in a new subfolder and the `Hyperparameters.json` file records the selected hyperparameters used for that run.
 
