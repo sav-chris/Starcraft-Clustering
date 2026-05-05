@@ -60,10 +60,15 @@ and [Jensen–Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93S
 I create a histogram of everything that was built in the opener, then use Kullback–Leibler or Jensen–Shannon divergence to compute the distance between two histograms. 
 
 Kullback_Leibler:
+
 $$
+D_{\mathbf{KL}}(P \,\|\, Q) = \sum_{x} P(x)\, \log \frac{P(x)}{Q(x)}.
+
+$$
+
 D_{\mathrm{KL}}(P \,\|\, Q) 
 = \sum_{x} P(x)\, \log \frac{P(x)}{Q(x)}.
-$$
+
 
 Jensen-Shannon:
 
