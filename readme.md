@@ -67,7 +67,7 @@ $$
 
 Jensen-Shannon:
 $$
-\mathbf{JSD}(P || Q) = \frac{1}{2} D_{KL}(P || M) + \frac{1}{2} D_{KL}(Q || M)
+JSD(P || Q) = \frac{1}{2} D_{KL}(P || M) + \frac{1}{2} D_{KL}(Q || M)
 $$
 
 
