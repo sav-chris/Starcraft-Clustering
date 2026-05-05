@@ -54,6 +54,8 @@ Professional tournaments can have large prize pools, the players are highly skil
 
 This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering. The OPTICS algorithm can cluster any data points as long as you can define a distance metric between them.
 
+This algorithm is unsupervised so you don't need to collect a separate training data set and train the classifier. 
+
 ---
 
 #### 📏 How do you define the distance between two starcraft build orders? 
@@ -111,13 +113,6 @@ Additional replay files can be found here
 
 https://lotv.spawningtool.com/replaypacks/
 
-
-# Clustering 
-
-This Project uses [OPTICS](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html) clustering
-
-
-Since Starcraft build orders are not numbers, [Levenshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) distance is used as a distance metric, to measure the distance between two build orders. 
 
 # Dependencies 
 
